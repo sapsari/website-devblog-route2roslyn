@@ -27,7 +27,7 @@ const IndexPage = ({ pageContext }) => {
           />
         </Helmet>
         {group
-          .sort((({ nodeA }),({ nodeB })) => {nodeA.frontmatter.date} > {nodeB.frontmatter.date})
+          .sort(({ nodeA },{ nodeB }) => {nodeA.frontmatter.date} > {nodeB.frontmatter.date})
           .map(({ node }) => (
           <Card key={node.fields.slug}>
             <Summary
