@@ -13,7 +13,7 @@ Tools that I developed:
 * [Pattern Maker](https://marketplace.visualstudio.com/items?itemName=MerryYellow.patternmaker)
 * [Code Enchanter](https://assetstore.unity.com/packages/tools/utilities/code-enchanter-120279)
 
-Games that I have worked on
+Games that I have worked on:
 
 * [Mount & Blade II: Bannerlord](https://www.taleworlds.com/en/Games/Bannerlord)
 * [Mount & Blade: Warband](https://www.taleworlds.com/en/Games/Warband)
