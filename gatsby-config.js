@@ -65,7 +65,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: userConfig.primaryColor,
         display: 'minimal-ui',
-        icon: 'src/main.jpg',
+        icon: 'src/favicon.ico',
         query: `
           {
             site {
