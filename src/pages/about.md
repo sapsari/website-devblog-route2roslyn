@@ -6,6 +6,7 @@ description: about
 Hey,
 
 I'm Yellow, I develop tools and games. In this blog, I'll mostly write about C# and Roslyn. I'll try to write about topics that has no clear documentation or has not been discussed in stackoverflow.com or any other blog.
+<!-- end -->
 
 Tools that I developed:
 
