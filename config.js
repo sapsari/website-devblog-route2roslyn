@@ -1,13 +1,13 @@
 module.exports = {
   title: 'Route to Roslyn', // Required
   author: 'Route to Roslyn', // Required
-  description: 'Journey with C# that leads to Roslyn',
+  description: 'A journey with C# that is leading to Roslyn',
   primaryColor: '#3498db', // Required
   showHeaderImage: true,
   showShareButtons: true,
   postsPerPage: 5, // Required
   social: {
-    //website: 'https://route2roslyn.netlify.com',
+    website: 'https://route2roslyn.netlify.com/about',
     //github: 'https://github.com/ryanfitzgerald',
     twitter: 'https://twitter.com/_merryYellow',
     //linkedin: 'https://ca.linkedin.com/in/ryanafitzgerald',
