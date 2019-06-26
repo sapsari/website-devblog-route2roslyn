@@ -26,9 +26,7 @@ const IndexPage = ({ pageContext }) => {
             content={`${userConfig.title} | ${userConfig.description}`}
           />
         </Helmet>
-        {group
-          .sort(function(a,b) {return new Date(b.node.frontmatter.date) - new Date(a.node.frontmatter.date);})
-          .map(({ node }) => (
+        {group.map(({ node }) => (
           <Card key={node.fields.slug}>
             <Summary
               date={node.frontmatter.date}
