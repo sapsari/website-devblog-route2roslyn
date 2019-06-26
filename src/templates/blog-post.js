@@ -60,7 +60,7 @@ class BlogPostTemplate extends React.Component {
             <Disqus 
               identifier={post.id}
               title={post.frontmatter.title}
-              url={`${userConfig.siteUrl}${location.pathname}`}
+              url={url}
             />
           </Card>
 
