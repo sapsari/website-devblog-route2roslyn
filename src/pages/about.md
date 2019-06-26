@@ -2,11 +2,11 @@
 title: About
 date: 2019-06-25T19:57:58.959Z
 description: about
-featuredImage: './enter.png'
 ---
-Hey,
+Hey, 
 
 I'm Yellow, I develop tools and games. In this blog, I'll mostly write about C# and Roslyn. I'll try to write about topics that has no clear documentation or has not been discussed in stackoverflow or any other blog.
+
 <!-- end -->
 
 Tools that I developed:
