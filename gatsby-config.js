@@ -10,6 +10,12 @@ module.exports = {
   pathPrefix: userConfig.pathPrefix,
   plugins: [
     {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `route2roslyn`
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages`,

@@ -2,6 +2,7 @@ import {graphql} from 'gatsby';
 import Helmet from 'react-helmet';
 import get from 'lodash/get';
 import React from 'react';
+import Disqus from 'gatsby-plugin-disqus'
 
 import userConfig from '../../config';
 
@@ -56,6 +57,11 @@ class BlogPostTemplate extends React.Component {
             {userConfig.showShareButtons && (
               <Share url={url} title={post.frontmatter.title} />
             )}
+            <Disqus 
+              identifier={post.id}
+              title={post.frontmatter.title}
+              url={`${userConfig.siteUrl}${location.pathname}`}
+            />
           </Card>
 
           <PageNav>
