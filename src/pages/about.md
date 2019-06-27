@@ -10,12 +10,12 @@ I'm Yellow, I develop tools and games. In this blog, I'll mostly write about C# 
 
 <!-- end -->
 
-Tools that I developed:
+Tools that I have been developing:
 
 * [Pattern Maker](https://marketplace.visualstudio.com/items?itemName=MerryYellow.patternmaker)
 * [Code Enchanter](https://assetstore.unity.com/packages/tools/utilities/code-enchanter-120279)
 
-Games that I have worked on:
+Games that I worked on:
 
 * [Mount & Blade II: Bannerlord](https://www.taleworlds.com/en/Games/Bannerlord)
 * [Mount & Blade: Warband](https://www.taleworlds.com/en/Games/Warband)
