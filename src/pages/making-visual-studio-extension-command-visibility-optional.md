@@ -16,27 +16,23 @@ The implementations is made of three distinct parts, but I add a setup part in c
 
 ## 1. Setup
 
-In setup part, I will create a new project for extension, then add a command and an options page to it. I'm using Visual Studio 2019 version 16.1.4, but it should work on 2017 too. Also make sure to install the Visual Studio extension development workload under Other Toolsets.
+In setup part, I will create a new project for extension, then add a command and an options page to it. I'm using Visual Studio 2019 version 16.1.4, but it should work on 2017 too. Also make sure to install the 'Visual Studio extension development' workload under 'Other Toolsets'.
 
 I'll quickly go over setup since it's not the focus of the blog. You can otheXXX
 
 First create a new project with the template of 'VSIX Project' (VSIX stands for Visual Studio extension installer, our project's output will be an installer of our extension). The project should have a package class (.cs file for it) and a manifest file. You can customize your extension's name, version, description and many more in the manifest file.
 
-Hit 'F5' to test the extension. This will create a new Visual Studio instance, with its own settings and extensions (which is called Experimental Instance). Our extension will be automatically installed in this instance. It will take a while to start Visual Studio for the first time. When loaded, view installed extension from top menu 'Extensions' ==> 'Manage Extensions', and our extension should appear  on the list.
+Hit 'F5' to test the extension. This will create a new Visual Studio instance, with its own settings and extensions (which is called Experimental Instance). The extension will be automatically installed in this instance. It will take a while to start Visual Studio for the first time. When loaded, view installed extension from top menu 'Extensions' → 'Manage Extensions', and our extension should appear  on the list. A tip is not using rebuilding the project or solution, or the extension might not get updated correctly in the experimental instance. If the extension is not getting updated for some reason, try to increment version number in the manifest file.
 
-XXXIMAGE, extension list
+For now the extension has nothing and does nothing. Time to add a command to it, which will add a UI element to Visual Studio so that the extension will be accessible to users. Commands are the way you add actions to Visual Studio. Add a new item to the project, on left pane of pop-up window choose 'Extensibility' and on the list choose 'Custom Command'. This template command adds an item to the top menu 'Tools'.
 
-For now our extension has nothing and does nothing. Time to add a command to it, which will add a UI element to Visual Studio so that our extension will be accessible to users. Commands are the way you add actions to Visual Studio. Add a new item to our project, on left pane of pop-up window choose 'Extensibility' and on the list choose 'Custom Command'. This template command add an item to the top menu 'Tools'//\*\*--.
+Now there is three more files. A cs file for the command class; a png image file for the command's resource; and vsct, command table file, in which some command data is stored, its like the header for the commands (if you had a command before, vsct will be updated insted of being inserted)
 
-XXXIMAGE, show popup window
+We will focus on the command table file later, for now you can change UI display name from there, just search for 'Invoke ' and change the full text. You can change UI icon from the resource file. And your command's functionality is in the 'Execute' method of your command class, of which can be changed. Test the extension again. A new item should appear in top menu'Tools'.
 
-Now we have three more files. A cs file for the command class; a png image file for the command's resource; and vsct, command table file, in which some command data is stored, its like the header for the commands (if you had a command before, vsct will be updated insted of being inserted)
+XXX SS tools command
 
-XXXIMAGE, show three files
-
-We will focus on the command table file later, for now you can change UI display name from there, just search for 'Invoke ' and change the full text. You can change UI icon from the resource file. And your command's functionality is in the 'Execute' method of your command class, of which can be changed. Test your extension again. A new item should appear in submenu of 'Tools'.
-
-Next step is adding our options page. It is quite easy to do. Add this class into your project:
+Next step is adding the options page. It is quite easy to do. Add this class into your project:
 
 ```csharp
 using System.ComponentModel;
@@ -135,7 +131,7 @@ CODE autoload
 
 Next part requires reading from registry, for simplicity I will be implementing this part beforehand.
 
-Our extension's option values are already stored in the registry. Registry is where Visual Studio's option values are read from and written to, but they are not in the format we need. Option values are stored as strings, even if they are booleans or integers. We want our boolean value to be stored as zero or non-zero value. First locate them in the registry. Visual Studio does not use system registry, it has its own registry file (as of version 2017, so that we can have multiple versions of it installed). [This document](https://github.com/Microsoft/VSProjectSystem/blob/master/doc/overview/examine_registry.md) explains how to open it. Expand through 'Software' → 'Microsoft' → 'VisualStudio' → '16.0_306b9970Exp' → 'ApplicationPrivateSettings' → 'YellowNamespace' → 'YellowOptionsPage'. You should see property IsDisplayingYellowCommand, and its value '1\*System.Boolean\*True'.
+Our extension's option values are already stored in the registry. Registry is where Visual Studio's option values are read from and written to, but they are not in the format we need. Option values are stored as strings, even if they are booleans or integers. We want our boolean value to be stored as zero or non-zero value. First locate them in the registry. Visual Studio does not use system registry, it has its own registry file (as of version 2017, so that we can have multiple versions of it installed). [This document](https://github.com/Microsoft/VSProjectSystem/blob/master/doc/overview/examine_registry.md) explains how to open it. Expand through Software → `Microsoft` → `VisualStudio` → 16.0_306b9970Exp → ApplicationPrivateSettings → YellowNamespace → YellowOptionsPage. You should see property IsDisplayingYellowCommand, and its value '1\*System.Boolean\*True'.
 
 PAINT SCREENHSOT
 
@@ -307,8 +303,4 @@ Now all cases are handled. When user changes the options, the visibility of our 
 
 There is one final bug left, which is not available for the sample code. When command visibility is changed dynamically after options are updated, UI context rule is no more valid. My extension uses one more term in the UI context rule, which is "HierSingleSelectionName:.cs$". It's command is displayed in the explorer item context menu for only cs files, not for other file types. But when user updates the options, that rules becomes invalid and the command is displayed for all file types. I let this bug unresolved since it's not an important one.
 
-Well, that's it. You can access to the sample project on github, I committed each step one by one, don't forget to replace guids if you build something upon it.  Also you can see the functionality in action in my extension.
-
-\---------------------------
-advice, do not rebuild vsix project, or increase project number
-guidleri topla bi classa, for forking
+Well, that's it. You can [access to the sample project on github](https://github.com/sapsari/sample-project-visual-studio-extension-making-command-visibility-optional), I committed each step one by one, don't forget to replace guids if you build something upon it.  Also you can see the functionality in action in [my extension, Pattern Maker](https://marketplace.visualstudio.com/items?itemName=MerryYellow.patternmaker).
