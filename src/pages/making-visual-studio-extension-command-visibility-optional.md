@@ -32,39 +32,25 @@ We will focus on the command table file later, for now you can change UI display
 
 Next step is adding our options page. It is quite easy to do. Add this class into your project:
 
-`using System.ComponentModel;`
+```csharp
+using System.ComponentModel;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Settings;
+using Microsoft.VisualStudio.Settings;
+using Task = System.Threading.Tasks.Task;
 
-`using Microsoft.VisualStudio.Shell;`
-
-`using Microsoft.VisualStudio.Shell.Settings;`
-
-`using Microsoft.VisualStudio.Settings;`
-
-`using Task = System.Threading.Tasks.Task;`
-
-``
-
-`namespace YellowNamespace`
-
-`{`
-
-`    [DesignerCategory("code")] // to hide designer`
-
-`    class YellowOptionsPage : DialogPage`
-
-`    {`
-
-`        [Category("UI")]`
-
-`        [DisplayName("Display command")]`
-
-`        [Description("Display or hide extension shortcut in Tools menu")]`
-
-`        public bool IsDisplayingYellowCommand { get; set; } = true;`
-
-`    }`
-
-`}`
+namespace YellowNamespace
+{
+    [DesignerCategory("code")] // to hide designer
+    class YellowOptionsPage : DialogPage
+    {
+        [Category("UI")]
+        [DisplayName("Display command")]
+        [Description("Display or hide extension shortcut in Tools menu")]
+        public bool IsDisplayingYellowCommand { get; set; } = true;
+    }
+}
+```
 
 Each public property will be displayed in the options page. 'Category' attribute will group them. Then add 'ProvideOptionPage' attribute to your package.
 
