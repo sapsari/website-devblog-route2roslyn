@@ -54,15 +54,13 @@ namespace YellowNamespace
 
 Each public property will be displayed in the options page. 'Category' attribute will group them. Then add 'ProvideOptionPage' attribute to your package.
 
-`[PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]`
-
-`[Guid(YellowPackage.PackageGuidString)]`
-
-`[ProvideMenuResource("Menus.ctmenu", 1)]`
-
-`[ProvideOptionPage(typeof(YellowOptionsPage), "Yellow Extension", "General", 0, 0, true)]`
-
-`public sealed class YellowPackage : AsyncPackage`
+```csharp
+[PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
+[Guid(YellowPackage.PackageGuidString)]
+[ProvideMenuResource("Menus.ctmenu", 1)]
+[ProvideOptionPage(typeof(YellowOptionsPage), "Yellow Extension", "General", 0, 0, true)]
+public sealed class YellowPackage : AsyncPackage
+```
 
 XXX TEST. Your extension can have multiple options pages. To do it, add another DialogPage derived class, and add another ProvideOptionPage attribute for it.
 
@@ -72,59 +70,49 @@ We have an extension with a command and an options page, we could move on to cha
 
 We want to change command's visibility dynamically, so let's take a look at the command class. It does not inherit a class. It's fields are id, guid and package; both are irrelevant. But inside the constructor, we see a variable named menuItem of type MenuCommand. Inspect its members and you'll see property Visible, which is settable. Let's try assigning it.
 
-`private YellowCommand(AsyncPackage package, OleMenuCommandService commandService)`
+```csharp
+private YellowCommand(AsyncPackage package, OleMenuCommandService commandService)
+{
+	this.package = package ?? throw new ArgumentNullException(nameof(package));
+	commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
-`        {`
+	var menuCommandID = new CommandID(CommandSet, CommandId);
+	var menuItem = new MenuCommand(this.Execute, menuCommandID);
+	commandService.AddCommand(menuItem);
 
-`            this.package = package ?? throw new ArgumentNullException(nameof(package));`
-
-`            commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));`
-
-``
-
-`            var menuCommandID = new CommandID(CommandSet, CommandId);`
-
-`            var menuItem = new MenuCommand(this.Execute, menuCommandID);`
-
-`            commandService.AddCommand(menuItem);`
-
-``
-
-`            // TODO, remove this later`
-
-`            menuItem.Visible = false;`
-
-`        }`
+	// TODO, remove this later
+	menuItem.Visible = false;
+}
+```
 
 If you test the extension, you will see that nothing changes. Unfortunately, we need to mark the command. Add CommandFlag DynamicVisibility to your command in the command table.
 
-`<Button guid="guidYellowPackageCmdSet" id="YellowCommandId" priority="0x0100" type="Button">`
-
-`  <Parent guid="guidYellowPackageCmdSet" id="MyMenuGroup" />`
-
-`  <Icon guid="guidImages" id="bmpPic1" />`
-
-`  <CommandFlag>DynamicVisibility<!--This flag makes setting property Visible functional--></CommandFlag>`
-
-`  <Strings>`
-
-`    <ButtonText>SMILE :)<!--Change text of the menu item here--></ButtonText>`
-
-`  </Strings>`
-
-`</Button>`
+```xml
+<Button guid="guidYellowPackageCmdSet" id="YellowCommandId" priority="0x0100" type="Button">
+  <Parent guid="guidYellowPackageCmdSet" id="MyMenuGroup" />
+  <Icon guid="guidImages" id="bmpPic1" />
+  <CommandFlag>DynamicVisibility<!--This flag makes setting property Visible functional--></CommandFlag>
+  <Strings>
+    <ButtonText>SMILE :)<!--Change text of the menu item here--></ButtonText>
+  </Strings>
+</Button>
+```
 
 Test again, and you will see your command will be hidden when you clicked on it. Now that we have found what we seek, time to use it properly. Undo command's constructor and let's head back to options page. Options page's base class, class DialogPage have virtual methods named SaveSettingsToStorage, SaveSettingsToXml  and OnApply; all of which are called when options are changed. I'm choosing SaveSettingsToStorage because we will read from and write to storage later. Override the method and change our command's visibility inside.
-`// This method is called each time an option value is changed`
-`public override void SaveSettingsToStorage()`
-`{`
-`base.SaveSettingsToStorage();`
 
-`// Retrieve the command and change its visibility`
-`OleMenuCommandService commandService = this.GetService(typeof(System.ComponentModel.Design.IMenuCommandService)) as OleMenuCommandService;`
-`var yellowCommand = commandService.FindCommand(new System.ComponentModel.Design.CommandID(YellowCommand.CommandSet, YellowCommand.CommandId));`
-`yellowCommand.Visible = IsDisplayingYellowCommand;`
-`}`
+```csharp
+// This method is called each time an option value is changed
+public override void SaveSettingsToStorage()
+{
+	base.SaveSettingsToStorage();
+
+	// Retrieve the command and change its visibility
+	OleMenuCommandService commandService = this.GetService(typeof(System.ComponentModel.Design.IMenuCommandService)) as OleMenuCommandService;
+	var yellowCommand = commandService.FindCommand(new System.ComponentModel.Design.CommandID(YellowCommand.CommandSet, YellowCommand.CommandId));
+	yellowCommand.Visible = IsDisplayingYellowCommand;
+}
+```
+
 Test your extension, and you will see that command becomes visible when the option is set to true and becomes hidden when set to false.
 But we have a very big problem here. Assume the user wants to hide the command and sets the option to false. When she changes the option, the command will be hidden. But when Visual Studio restarts, the command will be visible again. Well okay, that's expected since we assign the property Visible only in the options. If we are to assign it in the package initializer too (it's like the Main method, method InitializeAsync is called first on your extension), it will be fixed, right (spoilers, no it won't).
 CODE (of ctor with visible=false)
@@ -139,85 +127,48 @@ Our extension's option values are already stored in the registry. Registry is wh
 PAINT SCREENHSOT
 Use existing method of SaveSettingsToStorage for saving our custom registry property. Create WritableSettingsStore, a helper class for writing to registry, then use it to store the custom property. Path and property name can be customized to your needs. XXX
 
-`[DesignerCategory("code")] // to hide designer`
+```csharp
+[DesignerCategory("code")] // to hide designer
+class YellowOptionsPage : DialogPage
+{
+	/// <summary>
+	/// Where extension options are stored in the registry, can be get from base property SharedSettingsStorePath
+	/// </summary>
+	const string registryCollectionPath = @"ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage";
+	const string propertyName = nameof(IsDisplayingYellowCommand) + "Raw";
 
-`class YellowOptionsPage : DialogPage`
+	[Category("UI")]
+	[DisplayName("Display command")]
+	[Description("Display or hide extension shortcut in Tools menu")]
+	public bool IsDisplayingYellowCommand { get; set; } = true;
 
-`{`
+	// This method is called each time an option value is changed
+	public override void SaveSettingsToStorage()
+	{
+		base.SaveSettingsToStorage();
 
-`    /// <summary>`
+		// overridden base method is not async, so run our own async method with ThreadHelper
+		ThreadHelper.JoinableTaskFactory.Run(async delegate
+		{
+			await SaveSettingsToStorageAuxAsync();
+		});
+	}
 
-`    /// Where extension options are stored in the registry, can be get from base property SharedSettingsStorePath`
+	async Task SaveSettingsToStorageAuxAsync()
+	{
+		// Retrieve the command and change its visibility
+		OleMenuCommandService commandService = this.GetService(typeof(System.ComponentModel.Design.IMenuCommandService)) as OleMenuCommandService;
+		var yellowCommand = commandService.FindCommand(new System.ComponentModel.Design.CommandID(YellowCommand.CommandSet, YellowCommand.CommandId));
+		yellowCommand.Visible = IsDisplayingYellowCommand;
 
-`    /// </summary>`
-
-`    const string registryCollectionPath = @"ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage";`
-
-`    const string propertyName = nameof(IsDisplayingYellowCommand) + "Raw";`
-
-``
-
-`    [Category("UI")]`
-
-`    [DisplayName("Display command")]`
-
-`    [Description("Display or hide extension shortcut in Tools menu")]`
-
-`    public bool IsDisplayingYellowCommand { get; set; } = true;`
-
-``
-
-`    // This method is called each time an option value is changed`
-
-`    public override void SaveSettingsToStorage()`
-
-`    {`
-
-`        base.SaveSettingsToStorage();`
-
-``
-
-`        // overridden base method is not async, so run our own async method with ThreadHelper`
-
-`        ThreadHelper.JoinableTaskFactory.Run(async delegate`
-
-`        {`
-
-`            await SaveSettingsToStorageAuxAsync();`
-
-`        });`
-
-`    }`
-
-``
-
-`    async Task SaveSettingsToStorageAuxAsync()`
-
-`    {`
-
-`        // Retrieve the command and change its visibility`
-
-`        OleMenuCommandService commandService = this.GetService(typeof(System.ComponentModel.Design.IMenuCommandService)) as OleMenuCommandService;`
-
-`        var yellowCommand = commandService.FindCommand(new System.ComponentModel.Design.CommandID(YellowCommand.CommandSet, YellowCommand.CommandId));`
-
-`        yellowCommand.Visible = IsDisplayingYellowCommand;`
-
-``
-
-`        // Write custom property to the registry`
-
-`        await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();`
-
-`        var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);`
-
-`        var userSettingsStore = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);`
-
-`        userSettingsStore.SetBoolean(registryCollectionPath, propertyName, IsDisplayingYellowCommand);`
-
-`    }`
-
-`}`
+		// Write custom property to the registry
+		await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+		var settingsManager = new ShellSettingsManager(ServiceProvider.GlobalProvider);
+		var userSettingsStore = settingsManager.GetWritableSettingsStore(SettingsScope.UserSettings);
+		userSettingsStore.SetBoolean(registryCollectionPath, propertyName, IsDisplayingYellowCommand);
+	}
+}
+```
 
 Run the extension, save the options then examine the registry, make sure the custom property is stored before proceeding to the next part.
 
