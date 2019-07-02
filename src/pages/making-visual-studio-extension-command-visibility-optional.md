@@ -16,19 +16,19 @@ The implementations is made of three distinct parts, but I add a setup part in c
 
 ## 1. Setup
 
-In setup part, I will create a new project for extension, then add a command and an options page to it. I'm using Visual Studio 2019 version 16.1.4, but it should work on 2017 too. Also make sure to install the 'Visual Studio extension development' workload under 'Other Toolsets'.
+In setup part, I will create a new project for extension, then add a command and an options page to it. I'm using Visual Studio 2019 version 16.1.4, but it should work on 2017 too. Also make sure to install the `Visual Studio extension development` workload under `Other Toolsets`.
 
 I'll quickly go over setup since it's not the focus of the blog. You can otheXXX
 
-First create a new project with the template of 'VSIX Project' (VSIX stands for Visual Studio extension installer, our project's output will be an installer of our extension). The project should have a package class (.cs file for it) and a manifest file. You can customize your extension's name, version, description and many more in the manifest file.
+First create a new project with the template of `VSIX Project` (VSIX stands for Visual Studio extension installer, our project's output will be an installer of our extension). The project should have a package class (.cs file for it) and a manifest file. You can customize your extension's name, version, description and many more in the manifest file.
 
-Hit 'F5' to test the extension. This will create a new Visual Studio instance, with its own settings and extensions (which is called Experimental Instance). The extension will be automatically installed in this instance. It will take a while to start Visual Studio for the first time. When loaded, view installed extension from top menu 'Extensions' → 'Manage Extensions', and our extension should appear  on the list. A tip is not using rebuilding the project or solution, or the extension might not get updated correctly in the experimental instance. If the extension is not getting updated for some reason, try to increment version number in the manifest file.
+Hit 'F5' to test the extension. This will create a new Visual Studio instance, with its own settings and extensions (which is called Experimental Instance). The extension will be automatically installed in this instance. It will take a while to start Visual Studio for the first time. When loaded, view installed extension from top menu `Extensions` → `Manage Extensions`, the extension should appear on the list. I advise not to use rebuild project or solution when compiling, or the extension might not get updated correctly in the experimental instance. If the extension is not getting updated for some reason, try to increment version number in the manifest file.
 
-For now the extension has nothing and does nothing. Time to add a command to it, which will add a UI element to Visual Studio so that the extension will be accessible to users. Commands are the way you add actions to Visual Studio. Add a new item to the project, on left pane of pop-up window choose 'Extensibility' and on the list choose 'Custom Command'. This template command adds an item to the top menu 'Tools'.
+For now the extension has nothing and does nothing. Time to add a command to it, which will add a UI element to Visual Studio so that the extension will be accessible to users. Commands are the way you add actions to Visual Studio. Add a new item to the project, on left pane of pop-up window choose `Extensibility` and on the list choose `Custom Command`. This template command adds an item to the top menu `Tools`.
 
-Now there is three more files. A cs file for the command class; a png image file for the command's resource; and vsct, command table file, in which some command data is stored, its like the header for the commands (if you had a command before, vsct will be updated insted of being inserted)
+Now there is three more files. A cs file for the command class; a png image file for the command's resource; and a vsct file, aka command table file, in which some data of the commands are stored, its like the header for the commands (if extension had a command before, vsct will be updated insted of being inserted)
 
-We will focus on the command table file later, for now you can change UI display name from there, just search for 'Invoke ' and change the full text. You can change UI icon from the resource file. And your command's functionality is in the 'Execute' method of your command class, of which can be changed. Test the extension again. A new item should appear in top menu'Tools'.
+We will focus on the command table file later, for now you can change UI display name from there, just search for `Invoke` and change the full text. You can change UI icon from the resource file. And your command's functionality is in the `Execute` method of your command class, of which can be changed. Test the extension again. A new item should appear in top menu'Tools'.
 
 XXX SS tools command
 
@@ -54,7 +54,7 @@ namespace YellowNamespace
 }
 ```
 
-Each public property will be displayed in the options page. 'Category' attribute will group them. Then add 'ProvideOptionPage' attribute to your package.
+Each public property will be displayed in the options page. 'Category' attribute will group them. Then add `ProvideOptionPage` attribute to your package.
 
 ```csharp
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
@@ -64,7 +64,7 @@ Each public property will be displayed in the options page. 'Category' attribute
 public sealed class YellowPackage : AsyncPackage
 ```
 
-XXX TEST. Your extension can have multiple options pages. To do it, add another DialogPage derived class, and add another ProvideOptionPage attribute for it.
+Go to `Tools` → `Options` → `Yellow Extension,` you will see that there is an option value named `Display command`. Visual Studio automatically creates the option page for the extension. Your extension can have multiple options pages; to do it, add another `DialogPage` derived class, and add another `ProvideOptionPage` attribute for it.
 
 We have an extension with a command and an options page, we could move on to changing our command's visibility.
 
@@ -87,7 +87,7 @@ private YellowCommand(AsyncPackage package, OleMenuCommandService commandService
 }
 ```
 
-If you test the extension, you will see that nothing changes. Unfortunately, we need to mark the command. Add CommandFlag DynamicVisibility to your command in the command table.
+If you test the extension, you will see that nothing changes. Unfortunately, we need to mark the command. Add `CommandFlag` `DynamicVisibility` to your command in the command table (.vsct file).
 
 ```xml
 <Button guid="guidYellowPackageCmdSet" id="YellowCommandId" priority="0x0100" type="Button">
@@ -100,7 +100,7 @@ If you test the extension, you will see that nothing changes. Unfortunately, we 
 </Button>
 ```
 
-Test again, and you will see your command will be hidden when you clicked on it. Now that we have found what we seek, time to use it properly. Undo command's constructor and let's head back to options page. Options page's base class, class DialogPage have virtual methods named SaveSettingsToStorage, SaveSettingsToXml  and OnApply; all of which are called when options are changed. I'm choosing SaveSettingsToStorage because we will read from and write to storage later. Override the method and change our command's visibility inside.
+Test again, and you will see your command will be hidden when you clicked on it. Now that we have found what we seek, time to use it properly. Undo command's constructor and let's head back to options page. Options page's base class, class `DialogPage` have virtual methods named `SaveSettingsToStorage`, `SaveSettingsToXml` and `OnApply`; all of which are called when options are changed. I'm choosing `SaveSettingsToStorage` because the extension will read from and write to storage later. Override the method and change our command's visibility inside.
 
 ```csharp
 // This method is called each time an option value is changed
@@ -115,15 +115,15 @@ public override void SaveSettingsToStorage()
 }
 ```
 
-Test your extension, and you will see that command becomes visible when the option is set to true and becomes hidden when set to false.
+Test the extension, and you will see that command becomes visible when the option is set to true and becomes hidden when set to false.
 
-But we have a very big problem here. Assume the user wants to hide the command and sets the option to false. When she changes the option, the command will be hidden. But when Visual Studio restarts, the command will be visible again. Well okay, that's expected since we assign the property Visible only in the options. If we are to assign it in the package initializer too (it's like the Main method, method InitializeAsync is called first on your extension), it will be fixed, right (spoilers, no it won't).
+But we have a very big problem here. Assume the user wants to hide the command and sets the option to false. When she changes the option, the command will be hidden. But when Visual Studio restarts, the command will be visible again. Well okay, that's expected since we assign the property `Visible` only in the options. If we are to assign it in the package initializer method too (it's like the Main method, method InitializeAsync is called first on your extension), it will be fixed, right (spoilers, no it won't).
 
 CODE (of ctor with visible=false)
 
 It won't work because Visual Studio does not load the extension until it is needed, meaning Visual Studio does not execute any code from the extension until it is needed. Showing commands in the top menu or context menu is not enough for initializing the package, because they are only UI elements, like shortcuts. So, we need something, and that thing cannot be C# code, for adjusting command visibility before our package loads.
 
-One way of solving it will be adding attribute ProvideAutoLoad to the package. It will make our package to be automatically loaded when Visual Studio starts up or a solution is loaded etc. I don't recommend using it since it will slow down start up or loading time. But maybe, if you are prototyping, you may use this and skip the next two steps.
+One way of solving it will be adding attribute `ProvideAutoLoad` to the package. It will make the extension to be automatically loaded when Visual Studio starts up or loads a solution etc. I don't recommend using it since it will slow down start up or load time. But maybe, if you are prototyping, you may use this and skip the next two steps.
 
 CODE autoload
 
@@ -131,11 +131,11 @@ CODE autoload
 
 Next part requires reading from registry, for simplicity I will be implementing this part beforehand.
 
-Our extension's option values are already stored in the registry. Registry is where Visual Studio's option values are read from and written to, but they are not in the format we need. Option values are stored as strings, even if they are booleans or integers. We want our boolean value to be stored as zero or non-zero value. First locate them in the registry. Visual Studio does not use system registry, it has its own registry file (as of version 2017, so that we can have multiple versions of it installed). [This document](https://github.com/Microsoft/VSProjectSystem/blob/master/doc/overview/examine_registry.md) explains how to open it. Expand through Software → `Microsoft` → `VisualStudio` → 16.0_306b9970Exp → ApplicationPrivateSettings → YellowNamespace → YellowOptionsPage. You should see property IsDisplayingYellowCommand, and its value '1\*System.Boolean\*True'.
+The extension's option values are already stored in the registry. Registry is where Visual Studio's option values are read from and written to, but they are not in the format we need. Option values are stored as strings, even if they are booleans or integers. We want our boolean value to be stored as zero or non-zero value. First locate them in the registry. Visual Studio does not use system registry, it has its own registry file (as of version 2017, so that we can have multiple versions of it installed). [This document](https://github.com/Microsoft/VSProjectSystem/blob/master/doc/overview/examine_registry.md) explains how to open it. Expand through `Software` → `Microsoft` → `VisualStudio` → `16.0_306b9970Exp` → `ApplicationPrivateSettings` → `YellowNamespace` → `YellowOptionsPage`. You should see property `IsDisplayingYellowCommand`, and its value `1*System.Boolean*True`.
 
 PAINT SCREENHSOT
 
-Use existing method of SaveSettingsToStorage for saving our custom registry property. Create WritableSettingsStore, a helper class for writing to registry, then use it to store the custom property. Path and property name can be customized to your needs. XXX
+We can use the existing method of `SaveSettingsToStorage` for saving our custom registry property. Create a new `WritableSettingsStore`, a helper class for writing to registry, then use it to store the custom property. Path and property name can be customized to your needs. XXX
 
 ```csharp
 [DesignerCategory("code")] // to hide designer
@@ -180,17 +180,17 @@ class YellowOptionsPage : DialogPage
 }
 ```
 
-Run the extension, save the options then examine the registry, make sure the custom property is stored before proceeding to the next part.
+Test the extension, save the options then examine the registry, make sure the custom property is stored in the registry before proceeding to the next part.
 
 ## 4.Setting initial visibility
 
 Our aim was to change command visibility without loading the package. For this we will use _rule-based UI Context_. Remember the command table file, it's an xml file, it doesn't have any C# code; and Visual Studio parses it even if its package is not loaded. We can define a rule in this file by adding a visibility constraint.
 
-Take a look at the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019), especially term types. Terms are mostly related with project and solution, but term UserSettingsStoreQuery:<query> is the one we need (unfortunately googling UserSettingsStoreQuery results only to this documentation by the time I write this post; and the information is quite limited, which is the other reason I'm writing this post). It enables us define a rule by a registry value.
+Take a look at the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019), especially term types. Terms are mostly related with project and solution, but term `UserSettingsStoreQuery:<query>` is the one we need (unfortunately googling `UserSettingsStoreQuery` results only to this documentation by the time I write this post; and the information is quite limited, which is the other reason I'm writing this post). It enables us define a rule by a registry value.
 
-If query (registry value) does not exist, it returns false; if the query evaluates to a zero value, it returns false; if the query evaluates to a non-zero value, it evaluates to true. This is why we needed to write our custom property to registry, because otherwise it would have evaluated to non-zero in all cases since original ones are stored as strings.
+If query (registry value) does not exist, it returns false; if the query evaluates to a zero value, it returns false; if the query evaluates to a non-zero value, it evaluates to true. This is why we needed to write our custom property to registry, because otherwise it would have evaluated to non-zero in all cases since original properties are stored as strings.
 
-Query string needs the same collection path that was used in WritableSettingsStore, and a slash and property name appended to it, like this:
+Query string needs the same collection path that was used in `WritableSettingsStore`, and a slash and property name appended to it, like this:
 
 ```csharp
 collectionPath = @"ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage";
@@ -199,9 +199,9 @@ queryString = @"ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsD
 term = @"UserSettingsStoreQuery:ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsDisplayingYellowCommandRaw"
 ```
 
-UserSettingsStoreQuery:<query> (or `@"UserSettingsStoreQuery:ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsDisplayingYellowCommandRaw"`) is just one _term_. Terms are like variables, you can define multiple terms, then use them in the _expression_. Expression is a like a if condition with operants & \[and], | \[or], ! \[not], () \[parentheses]. Examples in the [documentation](docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019) will give you a better idea.
+`UserSettingsStoreQuery:<query>` (or `@"UserSettingsStoreQuery:ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsDisplayingYellowCommandRaw"`) is just one _term_. Terms are like variables, you can define multiple terms, then use them in the _expression_. Expression is like a if condition with operants & \[and], | \[or], ! \[not], () \[parentheses]. Examples in the [documentation](docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019) will give you a better idea.
 
-Time for the implementation. First declare a const string in OptionsPage for the query of the rule.
+Time for the implementation. First declare a const string in `OptionsPage` for the query of the rule.
 
 ```csharp
 /// <summary>
@@ -215,7 +215,7 @@ const string propertyName = nameof(IsDisplayingYellowCommand) + "Raw";
 public const string RegistryFullPathToIsDisplayingYellowCommandAsBoolean = registryCollectionPath + @"\" + propertyName;
 ```
 
-In the command table (.vsct file), create a new GuidSymbol with a new guid. Then add a VisibilityConstraint item where guid and id is same as the command's, and context is the new guid that just got created.
+In the command table (.vsct file), create a new `GuidSymbol` with a new guid. Then add a `VisibilityConstraints` item where guid and id is same as the command's, and context is the new guid that just got created.
 
 ```xml
 </Commands>
@@ -257,11 +257,11 @@ public sealed class YellowPackage : AsyncPackage
 // ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsDisplayingYellowCommandRaw
 ```
 
-I have named my term userWantsToSeeIt. Also we use the same guid in the command table (.vsct file).
+I have named my term userWantsToSeeIt. Also note that we use the same guid in the command table (.vsct file).
 
-We almost achieved what we have wished for. When user changes the options, the visibility of our command changes too. And command's visibility is now persistent, is not being effected when Visual Studio restarts. There is one minor issue left. When Visual Studio starts after installing the extension, registry will be empty. So the term userWantsToSeeIt will be false since there is no registry value in that path. And remember that original option value is stored as string, and always returns true, as long as it is stored.
+We almost achieved what we have wished for. When user changes the options, the visibility of the command changes too. And command's visibility is now persistent, is not being effected when Visual Studio restarts. There is one minor issue left. When Visual Studio starts for the first time after installing the extension, registry will be empty. So the term `userWantsToSeeIt` will be false since there will be no registry value in that path. XXXAnd remember that original option value is stored as string, and always returns true, as long as it is stored.
 
-Declare this field and method to options class
+Declare this field and method in the options class
 
 ```csharp
 /// Full path into registry for boolean value of IsDisplayingYellowCommand, to be consumed by UI context rule
@@ -281,7 +281,7 @@ public async Task InitializeSettingsToStorageAsync()
 }
 ```
 
-Then update the UI context rule expression and call method InitializeSettingsToStorageAsync from options page
+Then update the UI context rule expression and call method `InitializeSettingsToStorageAsync` from options page
 
 ```csharp
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
@@ -297,10 +297,21 @@ Then update the UI context rule expression and call method InitializeSettingsToS
 	}
 )]
 public sealed class YellowPackage : AsyncPackage
+{
+	protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+	{
+		// When initialized asynchronously, the current thread may be a background thread at this point.
+		// Do any initialization that requires the UI thread after switching to the UI thread.
+		await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+		await YellowCommand.InitializeAsync(this);
+
+		var optionsPage = (YellowOptionsPage)GetDialogPage(typeof(YellowOptionsPage));
+		await optionsPage.InitializeSettingsToStorageAsync();
+	}
 ```
 
-Now all cases are handled. When user changes the options, the visibility of our command changes too. And command's visibility is persistent, is not being effected when Visual Studio restarts. And command's visibility is correct, even if the package is never loaded.
+Now all cases are handled. When user changes the options, the visibility of the command changes too. And command's visibility is persistent, is not being effected when Visual Studio restarts. And command's visibility is correct even if the package is never loaded.
 
-There is one final bug left, which is not available for the sample code. When command visibility is changed dynamically after options are updated, UI context rule is no more valid. My extension uses one more term in the UI context rule, which is "HierSingleSelectionName:.cs$". It's command is displayed in the explorer item context menu for only cs files, not for other file types. But when user updates the options, that rules becomes invalid and the command is displayed for all file types. I let this bug unresolved since it's not an important one.
+There is one final bug left, which is absent in the sample code. When command's visibility is changed dynamically after options are updated, UI context rule is no more valid. My extension uses one more term in the UI context rule, which is "HierSingleSelectionName:.cs$". It's command is displayed in the explorer item context menu for only .cs files, not for other file types. But when user updates the options, that rules becomes invalid and the command is displayed for all file types. I let this bug unresolved since it's not an important one for my extension.
 
 Well, that's it. You can [access to the sample project on github](https://github.com/sapsari/sample-project-visual-studio-extension-making-command-visibility-optional), I committed each step one by one, don't forget to replace guids if you build something upon it.  Also you can see the functionality in action in [my extension, Pattern Maker](https://marketplace.visualstudio.com/items?itemName=MerryYellow.patternmaker).
