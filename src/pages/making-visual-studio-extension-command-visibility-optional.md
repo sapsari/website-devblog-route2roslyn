@@ -186,7 +186,7 @@ Test the extension, save the options then examine the registry, make sure the cu
 
 Our aim was to change command visibility without loading the package. For this we will use _rule-based UI Context_. Remember the command table file, it's an xml file, it doesn't have any C# code; and Visual Studio parses it even if its package is not loaded. We can define a rule in this file by adding a visibility constraint.
 
-Take a look at the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019), especially term types. Terms are mostly related with project and solution, but term `UserSettingsStoreQuery:<query>` is the one we need (unfortunately googling `UserSettingsStoreQuery` results only to this documentation by the time I write this post; and the information is quite limited, which is the other reason I'm writing this post). It enables us define a rule by a registry value.
+Take a look at the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019), especially _term types_. Terms are mostly related with project and solution, but term `UserSettingsStoreQuery:<query>` is the one we need (unfortunately googling `UserSettingsStoreQuery` results only to this documentation by the time I write this post; and the information is quite limited, which is the other reason I'm writing this post). It enables us define a rule by a registry value.
 
 If registry value of the query does not exist, it returns false; if the query evaluates to a zero value, it returns false; if the query evaluates to a non-zero value, it evaluates to true. This is why we needed to write our custom property to registry, because otherwise it would have evaluated to non-zero in all cases since original properties are stored as strings.
 
@@ -221,22 +221,22 @@ In the command table (.vsct file), create a new `GuidSymbol` with a new guid. Th
 </Commands>
 
 <VisibilityConstraints>
-<!-- UI context rule of 'guidUIContextRuleOfYellowCommand' is bind to the command 'YellowCommand' here -->
-<VisibilityItem guid="guidYellowPackageCmdSet" id="YellowCommandId" context="guidUIContextRuleOfYellowCommand" />
+  <!-- UI context rule of 'guidUIContextRuleOfYellowCommand' is bind to the command 'YellowCommand' here -->
+  <VisibilityItem guid="guidYellowPackageCmdSet" id="YellowCommandId" context="guidUIContextRuleOfYellowCommand" />
 </VisibilityConstraints>
 
 <Symbols>
-<!-- This is the package guid. -->
-<GuidSymbol name="guidYellowPackage" value="{b31fac4c-e69c-4607-830a-3a0f9af1a42b}" />
+  <!-- This is the package guid. -->
+  <GuidSymbol name="guidYellowPackage" value="{b31fac4c-e69c-4607-830a-3a0f9af1a42b}" />
 
-<!-- This is the UI context rule guid. -->
-<GuidSymbol name="guidUIContextRuleOfYellowCommand" value="{cc77a238-dcac-447c-bc95-bfd4d760d7e6}" />
+  <!-- This is the UI context rule guid. -->
+  <GuidSymbol name="guidUIContextRuleOfYellowCommand" value="{cc77a238-dcac-447c-bc95-bfd4d760d7e6}" />
 
-<!-- This is the guid used to group the menu commands together -->
-<GuidSymbol name="guidYellowPackageCmdSet" value="{5ab63779-e371-4a31-9bc0-ca15faff478c}">
-<IDSymbol name="MyMenuGroup" value="0x1020" />
-<IDSymbol name="YellowCommandId" value="0x0100" />
-</GuidSymbol>
+  <!-- This is the guid used to group the menu commands together -->
+  <GuidSymbol name="guidYellowPackageCmdSet" value="{5ab63779-e371-4a31-9bc0-ca15faff478c}">
+    <IDSymbol name="MyMenuGroup" value="0x1020" />
+    <IDSymbol name="YellowCommandId" value="0x0100" />
+  </GuidSymbol>
 ```
 
 We are done with the command table. We define the rule as an attribute for the package class.
@@ -263,7 +263,7 @@ We almost achieved what we have wished for. When user changes the options, the v
 
 If we can detect that options are saved before or not, it can be used to fix this issue. And remember that original option value is stored as string, and always returns true, as long as it is stored. So if we query for the original option value, query will return false if option values are never saved before and query will return true if option values are saved before. Updating the rule expression to `userWantsToSeeIt|!hasRunBefore` will fix the issue.
 
-Declare a new const field in the options class
+Declare another const field in the options class
 
 ```csharp
 /// Full path into registry for boolean value of IsDisplayingYellowCommand, to be consumed by UI context rule
@@ -291,6 +291,6 @@ public sealed class YellowPackage : AsyncPackage
 
 Now all cases are handled. When user changes the options, the visibility of the command changes too. And command's visibility is persistent, is not being effected when Visual Studio restarts. And command's visibility is correct even if the package is never loaded.
 
-There is one final bug left, which is absent in the sample code. When command's visibility is changed dynamically after options are updated, UI context rule is no more valid. My extension uses one more term in the UI context rule, which is "HierSingleSelectionName:.cs$". It's command is displayed in the explorer item context menu for only .cs files, not for other file types. But when user updates the options, that rules becomes invalid and the command is displayed for all file types. I let this bug unresolved since it's not an important one for my extension.
+There is one final bug left, which is absent in the sample code. When command's visibility is changed dynamically after options are updated, UI context rule is no more valid. My extension uses one more term in the UI context rule, which is `"HierSingleSelectionName:.cs$"`. It's command is displayed in the explorer item context menu for only .cs files, not for other file types. But when user updates the options, that rules becomes invalid and the command is displayed for all file types. I let this bug unresolved since it's not an important one for my extension.
 
 Well, that's it. You can [access to the sample project on github](https://github.com/sapsari/sample-project-visual-studio-extension-making-command-visibility-optional), I committed each step one by one, don't forget to replace guids if you build something upon it.  Also you can see the functionality in action in [my extension, Pattern Maker](https://marketplace.visualstudio.com/items?itemName=MerryYellow.patternmaker).
