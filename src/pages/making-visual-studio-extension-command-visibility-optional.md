@@ -26,7 +26,7 @@ Start debugging to test the extension. This will create a new Visual Studio inst
 
 For now the extension has nothing and does nothing. Time to add a command to it, which will add a UI element to Visual Studio so that the extension will be accessible to users. Commands are the way you add actions to Visual Studio. Add a new item to the project, on left pane of pop-up window choose `Extensibility` and on the list choose `Custom Command`. This template command adds an item to the menu bar `Tools`.
 
-Now there are three more files. A cs file for the command class; a png image file for the command's resource; and a vsct file, aka command table file, in which some data of the commands are stored, its like the header for the commands (if extension had a command before, vsct will be updated insted of being inserted)
+Now there are three more files. A cs file for the command class; a png image file for the command's resource; and a vsct file, aka command table file, in which some data of the commands are stored, its like the header for the commands (if extension had a command before, vsct will be updated instead of being inserted)
 
 We will focus on the command table file later, for now you can change UI display name from there, just search for `Invoke` and change the full text. You can change UI icon from the resource file. And the command's functionality is in the `Execute` method of the command class, of which can be changed. Test the extension again. A new item should appear in menu bar `Tools`.
 
@@ -227,7 +227,7 @@ queryString = @"ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsD
 term = @"UserSettingsStoreQuery:ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsDisplayingYellowCommandRaw"
 ```
 
-`UserSettingsStoreQuery:<query>` (or `@"UserSettingsStoreQuery:ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsDisplayingYellowCommandRaw"`) is just one _term_. Terms are like variables, you can define multiple terms, then use them in the _expression_. Expression is like a if condition with operants **&** \[and], **\|** \[or], **!** \[not], **()** \[parentheses]. Examples in the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019#add-more-rules-for-ui-context) will give you a better idea.
+`UserSettingsStoreQuery:<query>` (or `@"UserSettingsStoreQuery:ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage\IsDisplayingYellowCommandRaw"`) is just one _term_. Terms are like variables, you can define multiple terms, then use them in the _expression_. Expression is like a if condition with operators **&** \[and], **\|** \[or], **!** \[not], **()** \[parentheses]. Examples in the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019#add-more-rules-for-ui-context) will give you a better idea.
 
 Time for the implementation. First declare a const string in `OptionsPage` for the query of the rule.
 
