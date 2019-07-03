@@ -247,9 +247,10 @@ We are done with the command table. We define the rule as an attribute for the p
 [ProvideMenuResource("Menus.ctmenu", 1)]
 [ProvideOptionPage(typeof(YellowOptionsPage), "Yellow Extension", "General", 0, 0, true)]
 [ProvideUIContextRule("b31fac4c-e69c-4607-830a-3a0f9af1a42b", "UIContextRuleOfYellowCommand",
-"userWantsToSeeIt",
-new[] { "userWantsToSeeIt" },
-new[] { "UserSettingsStoreQuery:" + YellowOptionsPage.RegistryPathToIsDisplayingYellowCommand}
+	expression: "userWantsToSeeIt",
+	termNames: new[] { "userWantsToSeeIt" },
+	termValues: new[] { "UserSettingsStoreQuery:" + YellowOptionsPage.RegistryPathToIsDisplayingYellowCommand
+	}
 )]
 public sealed class YellowPackage : AsyncPackage
 {
