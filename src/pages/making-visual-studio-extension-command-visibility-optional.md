@@ -63,7 +63,7 @@ Each public property will be displayed in the options page. 'Category' attribute
 [Guid(YellowPackage.PackageGuidString)]
 [ProvideMenuResource("Menus.ctmenu", 1)]
 [ProvideOptionPage(typeof(YellowOptionsPage), "Yellow Extension", "General", 0, 0, true)]
-public sealed class YellowPackage : AsyncPackage
+public sealed class YellowPackage : AsyncPackage // highlight-line
 ```
 
 Go to `Tools` → `Options` → `Yellow Extension,` you will see that there is an option value named `Display command`. Visual Studio automatically creates the option page for the extension. The extension can have multiple options pages; to do it, add another `DialogPage` derived class, and add another `ProvideOptionPage` attribute for it.
