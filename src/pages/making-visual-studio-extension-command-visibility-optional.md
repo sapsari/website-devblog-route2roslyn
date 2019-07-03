@@ -63,7 +63,7 @@ Each public property will be displayed in the options page. 'Category' attribute
 [Guid(YellowPackage.PackageGuidString)]
 [ProvideMenuResource("Menus.ctmenu", 1)]
 [ProvideOptionPage(typeof(YellowOptionsPage), "Yellow Extension", "General", 0, 0, true)]
-public sealed class YellowPackage : AsyncPackage // highlight-line
+public sealed class YellowPackage : AsyncPackage
 ```
 
 Go to `Tools` → `Options` → `Yellow Extension,` you will see that there is an option value named `Display command`. Visual Studio automatically creates the option page for the extension. The extension can have multiple options pages; to do it, add another `DialogPage` derived class, and add another `ProvideOptionPage` attribute for it.
@@ -74,7 +74,7 @@ We have an extension with a command and an options page, we could move on to cha
 
 We want to change command's visibility dynamically, so let's take a look at the command class. It does not inherit a class. It's fields are id, guid and package; both are irrelevant. But inside the constructor, we see a variable named `menuItem` of type `MenuCommand`. Inspect its members and you'll see property `Visible`, which is settable. Let's try assigning it.
 
-```csharp
+```csharp{10-11}
 private YellowCommand(AsyncPackage package, OleMenuCommandService commandService)
 {
 	this.package = package ?? throw new ArgumentNullException(nameof(package));
@@ -91,7 +91,7 @@ private YellowCommand(AsyncPackage package, OleMenuCommandService commandService
 
 If you test the extension, you will see that nothing changes. Unfortunately, we need to mark the command. Add `CommandFlag` `DynamicVisibility` to your command in the command table (.vsct file).
 
-```xml
+```xml{4}
 <Button guid="guidYellowPackageCmdSet" id="YellowCommandId" priority="0x0100" type="Button">
   <Parent guid="guidYellowPackageCmdSet" id="MyMenuGroup" />
   <Icon guid="guidImages" id="bmpPic1" />
@@ -139,7 +139,7 @@ The extension's option values are _already stored_ in the registry. Registry is 
 
 We can use the existing method of `SaveSettingsToStorage` for saving the custom registry property. First declare registry path and property name as const fields. Then create a new `WritableSettingsStore`, a helper class for writing to registry. But creating it requires the main thread, so convert the method `SaveSettingsToStorage` to async and switch to main thread before the creation. Finally use the helper to store the custom property.
 
-```csharp
+```csharp{1-5,14-21,24,31-35}
 [DesignerCategory("code")] // to hide designer
 class YellowOptionsPage : DialogPage
 {
@@ -219,7 +219,7 @@ public const string RegistryFullPathToIsDisplayingYellowCommandAsBoolean = regis
 
 In the command table (.vsct file), create a new `GuidSymbol` with a new guid. Then add a `VisibilityConstraints` item where guid and id is same as the command's, and context is the new guid that just got created.
 
-```xml
+```xml{3-5,11-12}
 </Commands>
 
 <VisibilityConstraints>
@@ -243,7 +243,7 @@ In the command table (.vsct file), create a new `GuidSymbol` with a new guid. Th
 
 We are done with the command table. Define the rule as an attribute for the package class.
 
-```csharp
+```csharp{5-9}
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [Guid(YellowPackage.PackageGuidString)]
 [ProvideMenuResource("Menus.ctmenu", 1)]
@@ -275,7 +275,7 @@ public const string RegistryFullPathToIsDisplayingYellowCommandAsBoolean = regis
 
 Then update the UI context rule expression (add term `hasRunBefore`) in the package class
 
-```csharp
+```csharp{7-12}
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [Guid(YellowPackage.PackageGuidString)]
 [ProvideMenuResource("Menus.ctmenu", 1)]
