@@ -205,13 +205,14 @@ term = @"UserSettingsStoreQuery:ApplicationPrivateSettings\YellowNamespace\Yello
 
 Time for the implementation. First declare a const string in `OptionsPage` for the query of the rule.
 
-```csharp
+```csharp{7-10}
 /// <summary>
 /// Where extension options are stored in the registry, can be get from base property SharedSettingsStorePath
 /// </summary>
 const string registryCollectionPath = @"ApplicationPrivateSettings\YellowNamespace\YellowOptionsPage";
 const string propertyName = nameof(IsDisplayingYellowCommand) + "Raw";
 
+/// <summary>
 /// Full path into registry for boolean value of IsDisplayingYellowCommand, to be consumed by UI context rule
 /// </summary>
 public const string RegistryFullPathToIsDisplayingYellowCommandAsBoolean = registryCollectionPath + @"\" + propertyName;
