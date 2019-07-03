@@ -18,9 +18,7 @@ The implementation is made of three distinct parts, but I add a setup part in ca
 
 In setup part, I will create a new project for extension, then add a command and an options page to it. I'm using Visual Studio 2019 version 16.1.4, but it should work on 2017 too. Also, make sure to install the `Visual Studio extension development` workload under `Other Toolsets` in the Visual Studio installer.
 
-I'll quickly go over setup since it's not the focus of the blog. You can otheXXX
-
-for options page; [this](http://istvannovak.net/2017/01/17/vsx-reloaded-part-6-creating-options-pages/), 
+I'll quickly go over setup since it's not the focus of the blog. You can find more information about extension development [here](https://michaelscodingspot.com/visual-studio-2017-extension-development-tutorial-part-1/). For commands [here](https://docs.microsoft.com/en-us/visualstudio/extensibility/extending-menus-and-commands?view=vs-2019) and [here](https://docs.microsoft.com/en-us/visualstudio/misc/menucommands-vs-olemenucommands?view=vs-2015&viewFallbackFrom=vs-2019). And for options page [here](https://docs.microsoft.com/en-us/visualstudio/extensibility/creating-an-options-page?view=vs-2019) and [here](http://istvannovak.net/2017/01/17/vsx-reloaded-part-6-creating-options-pages/).
 
 First create a new project with the template of `VSIX Project` (VSIX stands for Visual Studio extension installer, the project's output will be an installer of the extension). The project should have a cs file for the package class and a manifest file. You can customize your extension's name, version, description and many more in the manifest file.
 
@@ -128,6 +126,8 @@ It won't work because Visual Studio does not load the extension until it is need
 One way of solving it will be adding attribute `ProvideAutoLoad` to the package. It will make the extension to be automatically loaded when Visual Studio starts up or loads a solution etc. I don't recommend using it since it will slow down start up or load time. But maybe, if you are prototyping, you may use this and skip the next two steps.
 
 CODE autoload
+
+(For more information about changing visibility and enabled state; [this](https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/making-commands-available?view=vs-2019), [this](https://stackoverflow.com/questions/50989207/how-can-i-enable-disable-command-in-visual-studio-2017-vsix-c-sharp-project/52059488), )
 
 ## 3. Writing to registry
 
