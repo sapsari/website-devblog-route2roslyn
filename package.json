@@ -30,6 +30,7 @@
     "netlify-cms": "^2.9.3",
     "netlify-cms-app": "^2.9.3",
     "package-lock.json": "^1.0.0",
+    "parse-numeric-range": "0.0.2",
     "prismjs": "^1.15.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
