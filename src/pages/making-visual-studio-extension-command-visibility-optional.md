@@ -119,7 +119,25 @@ Test the extension, and you will see that command becomes visible when the optio
 
 But we have a very big problem here. Assume the user wants to hide the command and sets the option to false. When she changes the option, the command will be hidden. But when Visual Studio restarts, the command will be visible again. Well okay, that's expected since we assign the property `Visible` only in the options. If we are to assign it in the package initializer method too (it's like the `Main` method, method `InitializeAsync` is called first on your extension), it will be fixed, right (spoilers, no it won't).
 
-CODE (of ctor with visible=false)
+```csharp{8-10,12-16}
+protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+{
+    // When initialized asynchronously, the current thread may be a background thread at this point.
+    // Do any initialization that requires the UI thread after switching to the UI thread.
+    await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+    await YellowCommand.InitializeAsync(this);
+
+    // TODO, remove below later
+    // Retrieve the options page
+    var optionsPage = (YellowOptionsPage)GetDialogPage(typeof(YellowOptionsPage));
+
+    // Retrieve the command and change its visibility
+    OleMenuCommandService commandService = await this.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+    Assumes.Present(commandService);
+    var yellowCommand = commandService.FindCommand(new CommandID(YellowCommand.CommandSet, YellowCommand.CommandId));
+    yellowCommand.Visible = optionsPage.IsDisplayingYellowCommand;
+}
+```
 
 It won't work because Visual Studio does not load the extension until it is needed, meaning Visual Studio does not execute any code from the extension until it is needed. Showing commands in the top menu or context menu is not enough for initializing the package, because they are only UI elements, like shortcuts. So, we need something, and that thing cannot be C# code, for adjusting command visibility before our package loads.
 
