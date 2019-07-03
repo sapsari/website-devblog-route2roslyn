@@ -276,7 +276,7 @@ public const string RegistryFullPathToIsDisplayingYellowCommandAsBoolean = regis
 
 Then update the UI context rule expression (add term `hasRunBefore`) in the package class
 
-```csharp{6-12}
+```csharp{6-11}
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [Guid(YellowPackage.PackageGuidString)]
 [ProvideMenuResource("Menus.ctmenu", 1)]
