@@ -139,7 +139,7 @@ The extension's option values are _already stored_ in the registry. Registry is 
 
 We can use the existing method of `SaveSettingsToStorage` for saving the custom registry property. First declare registry path and property name as const fields. Then create a new `WritableSettingsStore`, a helper class for writing to registry. But creating it requires the main thread, so convert the method `SaveSettingsToStorage` to async and switch to main thread before the creation. Finally use the helper to store the custom property.
 
-```csharp{1-5,14-21,24,31-35}
+```csharp{4-8,18-24,27,34-38}
 [DesignerCategory("code")] // to hide designer
 class YellowOptionsPage : DialogPage
 {
@@ -219,7 +219,7 @@ public const string RegistryFullPathToIsDisplayingYellowCommandAsBoolean = regis
 
 In the command table (.vsct file), create a new `GuidSymbol` with a new guid. Then add a `VisibilityConstraints` item where guid and id is same as the command's, and context is the new guid that just got created.
 
-```xml{3-5,11-12}
+```xml{3-6,12-13}
 </Commands>
 
 <VisibilityConstraints>
@@ -275,7 +275,7 @@ public const string RegistryFullPathToIsDisplayingYellowCommandAsBoolean = regis
 
 Then update the UI context rule expression (add term `hasRunBefore`) in the package class
 
-```csharp{7-12}
+```csharp{6-12}
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [Guid(YellowPackage.PackageGuidString)]
 [ProvideMenuResource("Menus.ctmenu", 1)]
