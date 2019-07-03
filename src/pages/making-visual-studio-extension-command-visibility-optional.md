@@ -227,13 +227,13 @@ In the command table (.vsct file), create a new `GuidSymbol` with a new guid. Th
 
 <Symbols>
   <!-- This is the package guid. -->
-  <GuidSymbol name="guidYellowPackage" value="{b31fac4c-e69c-4607-830a-3a0f9af1a42b}" />
+  <GuidSymbol name="guidYellowPackage" value="{feb28215-eba5-4494-a5b9-c2a14e885d1d}" />
 
   <!-- This is the UI context rule guid. -->
   <GuidSymbol name="guidUIContextRuleOfYellowCommand" value="{cc77a238-dcac-447c-bc95-bfd4d760d7e6}" />
 
   <!-- This is the guid used to group the menu commands together -->
-  <GuidSymbol name="guidYellowPackageCmdSet" value="{5ab63779-e371-4a31-9bc0-ca15faff478c}">
+  <GuidSymbol name="guidYellowPackageCmdSet" value="{5532f941-37bf-41fd-afce-5f42f849438b}">
     <IDSymbol name="MyMenuGroup" value="0x1020" />
     <IDSymbol name="YellowCommandId" value="0x0100" />
   </GuidSymbol>
