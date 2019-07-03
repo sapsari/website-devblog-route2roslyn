@@ -2,8 +2,10 @@
 title: Making Visual Studio extension command visibility optional
 date: 2019-07-02T13:20:51.257Z
 description: VSIX
+featuredImage: './making-visual-studio-extension-command-visibility-optional.jpg'
 ---
 So you are developing a Visual Studio extension which has some commands. And you want to make these commands' visibility optional, so that the user can hide or display these commands based on her preference. Sounds pretty simple, right. Well, unfortunately it is anything but simple. Because it requires implementing multiple features just for one task, and these features are mostly unrelated.
+<!-- end -->
 
 First, let's talk about _why_. Why I want to make the commands' visibility optional. My extension is accessible from Quick Actions menu, from menu bar `View` → `Other Windows`, from editor context menu and from explorer item context menu. They all do the same thing, but I inserted it into as many places as possible, because I want it to be as accessible as possible; so that new users will find it easily without reading any manual. The other reason is for marketing; the more you pop your product in the user's eye, the more she will remember and use it. But this approach has a drawback, some users might use the extension rarely or might feel their UI got overcrowded. For these cases, we give them the option to hide these shortcuts.
 
