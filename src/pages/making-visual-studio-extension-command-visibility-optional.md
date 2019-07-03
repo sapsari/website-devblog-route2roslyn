@@ -20,6 +20,8 @@ In setup part, I will create a new project for extension, then add a command and
 
 I'll quickly go over setup since it's not the focus of the blog. You can otheXXX
 
+for options page; [this](http://istvannovak.net/2017/01/17/vsx-reloaded-part-6-creating-options-pages/), 
+
 First create a new project with the template of `VSIX Project` (VSIX stands for Visual Studio extension installer, the project's output will be an installer of the extension). The project should have a cs file for the package class and a manifest file. You can customize your extension's name, version, description and many more in the manifest file.
 
 Start debugging to test the extension. This will create a new Visual Studio instance, with its own settings and extensions (which is called Experimental Instance). The extension will be automatically installed in this instance. It will take a while to start Visual Studio for the first time. When loaded, view installed extension from menu bar `Extensions` → `Manage Extensions`, the extension should appear on the list. I advise not to use rebuild project or solution when compiling, otherwise the extension might not get updated correctly in the experimental instance. If the extension is not getting updated for some reason, try to increment version number in the manifest file.
@@ -56,7 +58,7 @@ namespace YellowNamespace
 
 Each public property will be displayed in the options page. 'Category' attribute will group them. Then add `ProvideOptionPage` attribute to your package.
 
-```csharp
+```csharp{4}
 [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
 [Guid(YellowPackage.PackageGuidString)]
 [ProvideMenuResource("Menus.ctmenu", 1)]
