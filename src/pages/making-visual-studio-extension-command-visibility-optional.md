@@ -30,7 +30,7 @@ Now there is three more files. A cs file for the command class; a png image file
 
 We will focus on the command table file later, for now you can change UI display name from there, just search for `Invoke` and change the full text. You can change UI icon from the resource file. And your command's functionality is in the `Execute` method of your command class, of which can be changed. Test the extension again. A new item should appear in menu bar `Tools`.
 
-XXX SS tools command
+![Menu bar Tools item](/img/makingcommandoptionaltoolsmenu.png)
 
 Next step is adding the options page. It is quite easy to do. Add this class into your project:
 
@@ -133,7 +133,7 @@ Next part requires reading from registry, for simplicity I will be implementing 
 
 The extension's option values are already stored in the registry. Registry is where Visual Studio's option values are read from and written to, but they are not in the format the extension will need. Option values are stored as strings, even if they are booleans or integers. In the next part, the extension will require a boolean value, which is stored as zero or a non-zero value. First locate the current value in the registry. Visual Studio does not use system registry, it has its own registry file (as of version 2017, so that we can have multiple versions of it installed). [This document](https://github.com/Microsoft/VSProjectSystem/blob/master/doc/overview/examine_registry.md) explains how to open it, but don't forget to open experimental version's registry file (Mine is at `C:\Users\SARI\AppData\Local\Microsoft\VisualStudio\16.0_306b9970Exp\privateregistry.bin`). Expand through `Software` → `Microsoft` → `VisualStudio` → `16.0_306b9970Exp` → `ApplicationPrivateSettings` → `YellowNamespace` → `YellowOptionsPage` in registry. You should see property `IsDisplayingYellowCommand`, and its value `1*System.Boolean*True`.
 
-PAINT SCREENHSOT
+![Path in registry](/img/makingcommandoptionalregistry.png)
 
 We can use the existing method of `SaveSettingsToStorage` for saving our custom registry property. First declare registry path and property name as const fields. Then create a new `WritableSettingsStore`, a helper class for writing to registry. But creating it requires the main thread, so convert the method `SaveSettingsToStorage` to async and switch to main thread before the creation. Finally use the helper to store the custom property.
 
