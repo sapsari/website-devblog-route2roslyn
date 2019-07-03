@@ -127,7 +127,7 @@ One way of solving it will be adding attribute `ProvideAutoLoad` to the package.
 
 CODE autoload
 
-(For more information about changing visibility and enabled state; [this](https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/making-commands-available?view=vs-2019), [this](https://stackoverflow.com/questions/50989207/how-can-i-enable-disable-command-in-visual-studio-2017-vsix-c-sharp-project/52059488), )
+For more information about changing visibility and enabled state of commands; visit [here](https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/making-commands-available?view=vs-2019) and [here](https://stackoverflow.com/questions/50989207/how-can-i-enable-disable-command-in-visual-studio-2017-vsix-c-sharp-project/52059488) and [here](https://social.msdn.microsoft.com/Forums/vstudio/en-US/f3acc18c-b176-4f06-a8d1-cccff3d4bf7f/how-to-disable-and-enable-menu-commands-in-vspackage?forum=vsx).
 
 ## 3. Writing to registry
 
@@ -188,7 +188,7 @@ Test the extension, save the options then examine the registry, make sure the cu
 
 Our aim was to change command visibility without loading the package. For this we will use _rule-based UI Context_. Remember the command table file, it's an xml file, it doesn't have any C# code; and Visual Studio parses it even if its package is not loaded. We can define a rule in this file by adding a visibility constraint.
 
-Take a look at the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019), especially _term types_. Terms are mostly related with project and solution, but term `UserSettingsStoreQuery:<query>` is the one we need (unfortunately googling `UserSettingsStoreQuery` results only to this documentation by the time I write this post; and the information is quite limited, which is the other reason I'm writing this post). It enables us define a rule by a registry value.
+Take a look at the [documentation](https://docs.microsoft.com/en-us/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2019), especially _term types_ (Also [this](https://github.com/microsoft/VSSDK-Extensibility-Samples/tree/master/VisibilityConstraints) for an extra resource). Terms are mostly related with project and solution, but term `UserSettingsStoreQuery:<query>` is the one we need (unfortunately googling `UserSettingsStoreQuery` results only to this documentation by the time I write this post; and the information is quite limited, which is the other reason I'm writing this post). It enables us define a rule by a registry value.
 
 If registry value of the query does not exist, it returns false; if the query evaluates to a zero value, it returns false; if the query evaluates to a non-zero value, it evaluates to true. This is why we needed to write our custom property to registry, because otherwise it would have evaluated to non-zero in all cases since original properties are stored as strings.
 
