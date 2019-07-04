@@ -2,7 +2,7 @@
 title: About
 date: 2019-06-25T19:57:58.959Z
 description: about
-featuredImage: './about.png'
+featuredImage: './about.jpg'
 ---
 Hey, 
 
