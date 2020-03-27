@@ -27,14 +27,12 @@ abstract class MyClass{ }
 
 * [IsDefinition](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isdefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsDefinition)
 
-```csharp{1}
+```csharp{1,6}
 // MyClass<int> => false
 class MyClass<T>{
 	void MyMethod(MyClass<int> mc){ }
 } 
-```
 
-```csharp{1}
 // MyClass<T> => true
 class MyClass<T>{
 	void MyMethod(MyClass<T> mc){ }
