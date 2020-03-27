@@ -15,7 +15,6 @@ Roslyn uses technical terms from programming language and compiler design. Somet
 // MyClass => false
 class MyClass{ }
 ```
-
 ```csharp{1}
 // MyClass => true
 abstract class MyClass{ }
@@ -30,7 +29,6 @@ class MyClass<T>{
 	void MyMethod(MyClass<int> mc){ }
 } 
 ```
-
 ```csharp{1}
 // MyClass<T> => true
 class MyClass<T>{
