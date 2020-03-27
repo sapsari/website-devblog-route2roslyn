@@ -4,7 +4,7 @@ date: 2020-03-27T14:46:06.199Z
 description: Examples of roslyn symbol properties
 ---
 Roslyn uses technical terms from programming language and compiler design. Sometimes it can be hard to understand or guess what a property retrieves or a method executes. Here is a compilation of symbol properties and their representations in the language of C#.
-
+<!-- end -->
 
 
 ## [ISymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol?view=roslyn-dotnet)
