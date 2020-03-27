@@ -12,16 +12,12 @@ Roslyn uses technical terms from programming language and compiler design. Somet
 * [IsAbstract](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isabstract?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsAbstract)
 
 ```csharp
-class MyClass{ }
+// MyClass => falseclass MyClass{ }
 ```
-
-> MyClass => false
 
 ```csharp
-abstract class MyClass{ }
+// MyClass => trueabstract class MyClass{ }
 ```
-
-> MyClass => true
 
 * [IsDefinition
   ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isdefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsDefinition)
