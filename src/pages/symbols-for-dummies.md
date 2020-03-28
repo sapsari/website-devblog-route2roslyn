@@ -87,7 +87,7 @@ class MyClass : MyBaseClass{
 
 * [IsSealed](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.issealed?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsSealed)
 
-```csharp{1,3}
+```csharp{1,4}
 // MyClass => false
 class MyClass{ }
 
@@ -99,7 +99,7 @@ sealed class MyClass{ }
 
 * [IsStatic](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isstatic?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsStatic)
 
-```csharp{1,3}
+```csharp{1,4}
 // MyClass => false
 class MyClass{ }
 
