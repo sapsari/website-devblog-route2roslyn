@@ -13,12 +13,10 @@ Roslyn uses technical terms from programming language and compiler design. Somet
 
 * [IsAbstract](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isabstract?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsAbstract)
 
-```csharp{1}
+```csharp{1,4}
 // MyClass => false
 class MyClass{ }
-```
 
-```csharp{1}
 // MyClass => true
 abstract class MyClass{ }
 ```
@@ -36,5 +34,35 @@ class MyClass<T>{
 // MyClass<T> => true
 class MyClass<T>{
 	void MyMethod(MyClass<T> mc){ }
+}
+```
+
+<hr>
+
+* [IsExtern](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isextern?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsExtern)
+
+```csharp{1,4}
+MyMethod => false
+void MyMethod(){ }
+
+MyMethod => true
+[DllImport("mybinary.dll")]
+static extern void MyMethod();
+```
+
+<hr>
+
+* [IsImplicitlyDeclared](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isimplicitlydeclared?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsImplicitlyDeclared)
+
+```csharp{1,6}
+i (2nd one) => false
+void MyMethod(out int i){
+	MyMethod(out i);
+}
+
+_ => true
+void MyMethod(out int i){
+	MyMethod(out _);
+	i = 0;
 }
 ```
