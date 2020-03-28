@@ -14,10 +14,10 @@ Roslyn uses technical terms from programming language and compiler design. Somet
 * [IsAbstract](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isabstract?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsAbstract)
 
 ```csharp{1,4}
-// MyClass => false
+// MyClass → false
 class MyClass{ }
 
-// MyClass => true
+// MyClass → true
 abstract class MyClass{ }
 ```
 
@@ -26,12 +26,12 @@ abstract class MyClass{ }
 * [IsDefinition](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isdefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsDefinition)
 
 ```csharp{1,6}
-// MyClass<int> => false
+// MyClass<int> → false
 class MyClass<T>{
 	void MyMethod(MyClass<int> mc){ }
 } 
 
-// MyClass<T> => true
+// MyClass<T> → true
 class MyClass<T>{
 	void MyMethod(MyClass<T> mc){ }
 }
@@ -42,10 +42,10 @@ class MyClass<T>{
 * [IsExtern](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isextern?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsExtern)
 
 ```csharp{1,4}
-// MyMethod => false
+// MyMethod → false
 void MyMethod(){ }
 
-// MyMethod => true
+// MyMethod → true
 [DllImport("mybinary.dll")]
 static extern void MyMethod();
 ```
@@ -55,12 +55,12 @@ static extern void MyMethod();
 * [IsImplicitlyDeclared](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isimplicitlydeclared?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsImplicitlyDeclared)
 
 ```csharp{1,6}
-// i (2nd one) => false
+// i (2nd one) → false
 void MyMethod(out int i){
 	MyMethod(out i);
 }
 
-// _ => true
+// _ → true
 void MyMethod(out int i){
 	MyMethod(out _);
 	i = 0;
@@ -72,12 +72,12 @@ void MyMethod(out int i){
 * [IsOverride](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isoverride?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsOverride)
 
 ```csharp{1,6}
-// MyMethod => false
+// MyMethod → false
 class MyClass : MyBaseClass{
 	public void MyMethod(){ }
 }
 
-// MyMethod => true
+// MyMethod → true
 class MyClass : MyBaseClass{
 	public override void MyMethod(){ }
 }
@@ -88,10 +88,10 @@ class MyClass : MyBaseClass{
 * [IsSealed](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.issealed?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsSealed)
 
 ```csharp{1,4}
-// MyClass => false
+// MyClass → false
 class MyClass{ }
 
-// MyClass => true
+// MyClass → true
 sealed class MyClass{ }
 ```
 
@@ -100,10 +100,10 @@ sealed class MyClass{ }
 * [IsStatic](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isstatic?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsStatic)
 
 ```csharp{1,4}
-// MyClass => false
+// MyClass → false
 class MyClass{ }
 
-// MyClass => true
+// MyClass → true
 static class MyClass{ }
 ```
 
