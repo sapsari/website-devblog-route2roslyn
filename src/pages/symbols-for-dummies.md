@@ -124,3 +124,85 @@ class MyClass{
 ```
 
 <hr>
+
+* [Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)
+
+
+```csharp{1,4,7,11}
+// using MyString = System.String → Alias
+using MyString = System.String;
+
+// int[] → ArrayType
+int[] myArray;
+
+// Assembly
+// Regular C# code cannot provide this. Roslyn method CSharpCompilation.GetAssemblyOrModuleSymbol() will return this.
+
+// _ → Discard
+void MyMethod(out int i){
+	MyMethod(out _);
+	i = 0;
+}
+
+// dynamic → DynamicType
+dynamic myDynamic;
+
+// ErrorType
+// Regular C# code cannot provide this. This is recieved if the type could not be determined due to an error when calling Roslyn method SemanticModel.GetTypeInfo().
+
+// myEvent → Event
+event Action myEvent;
+
+// myField → Field
+class MyClass{
+	int myField;
+}
+
+// default: → Label
+switch (0){
+    default: break;
+}
+
+// myLocal → Local
+void MyMethod(){
+	var myLocal;
+}
+
+// void myMethod(){} → Method
+class MyClass{
+	void myMethod(){}
+}
+
+// class MyClass{} → NamedType
+class MyClass{}
+
+// namespace MyNamespace{} → Namespace
+namespace MyNamespace{}
+
+// NetModule
+// Regular C# code cannot provide this. Roslyn method CSharpCompilation.GetAssemblyOrModuleSymbol() will return this.
+
+// int myParameter → Parameter
+void MyMethod(int myParameter){}
+
+// int* → PointerType
+int* i;
+
+// #define MYPREPROCESSING → Preprocessing
+#define MYPREPROCESSING
+
+// int MyProperty => 3 → Property
+class MyClass{
+	int MyProperty => 3;
+}
+
+// from x in list → RangeVariable
+var list = new List<int>();
+var item = from x in list select x;
+
+// T → TypeParameter
+void MyMethod<T>(){}
+```
+
+<hr>
+
