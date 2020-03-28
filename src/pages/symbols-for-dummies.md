@@ -115,7 +115,6 @@ static class MyClass{ }
 
 * [IsVirtual
   ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isvirtual?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsVirtual)
-
 ```csharp{1,6}
 // MyMethod => false
 class MyClass{
@@ -127,5 +126,4 @@ class MyClass{
 	virtual void MyMethod(){ }
 }
 ```
-
 <hr>
