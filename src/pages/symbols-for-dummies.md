@@ -128,7 +128,7 @@ class MyClass{
 * [Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)
 
 
-```csharp{1,4,7,11}
+```csharp{1,4,7,10,16,19,22,25,30,35,40,45,48,51,54,57,60,63,68,72}
 // using MyString = System.String → Alias
 using MyString = System.String;
 
