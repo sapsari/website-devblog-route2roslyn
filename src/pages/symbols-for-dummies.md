@@ -39,7 +39,8 @@ class MyClass<T>{
 
 <hr>
 
-* [IsExtern](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isextern?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsExtern)
+* [IsExtern
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isextern?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsExtern)
 
 ```csharp{1,4}
 // MyMethod => false
@@ -52,7 +53,7 @@ static extern void MyMethod();
 
 <hr>
 
-* [IsImplicitlyDeclared](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isimplicitlydeclared?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsImplicitlyDeclared)
+* [IsImplicitlyDeclared](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isimplicitlydeclared?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsImplicitlyDeclared)
 
 ```csharp{1,6}
 // i (2nd one) => false
@@ -69,7 +70,8 @@ void MyMethod(out int i){
 
 <hr>
 
-* [IsOverride](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isoverride?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsOverride)
+* [IsOverride
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isoverride?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsOverride)
 
 ```csharp{1,6}
 // MyMethod => false
@@ -85,7 +87,8 @@ class MyClass : MyBaseClass{
 
 <hr>
 
-* [IsSealed](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.issealed?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsSealed)
+* [IsSealed
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.issealed?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsSealed)
 
 ```csharp{1,3}
 // MyClass => false
@@ -97,7 +100,8 @@ sealed class MyClass{ }
 
 <hr>
 
-* [IsStatic](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isstatic?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsStatic)
+* [IsStatic
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isstatic?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsStatic)
 
 ```csharp{1,3}
 // MyClass => false
@@ -109,7 +113,8 @@ static class MyClass{ }
 
 <hr>
 
-* [IsVirtual](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isvirtual?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsVirtual)
+* [IsVirtual
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isvirtual?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsVirtual)
 
 ```csharp{1,6}
 // MyMethod => false
