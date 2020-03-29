@@ -286,3 +286,54 @@ void MyMethod<T>(){}
 ```
 
 <hr>
+
+* [Language](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.language?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Language)
+
+```csharp{1}
+// → C#
+```
+
+<hr>
+
+* [Locations](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.locations?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Locations)
+
+```csharp{1}
+// → MySourceFile.cs
+```
+
+<hr>
+
+* [MetadataName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.metadataname?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_MetadataName)
+
+```csharp{1,2}
+// MyClass → MyClass
+// MyGenericClass → MyGenericClass`1
+class MyClass{}
+class MyGenericClass<T>{}
+```
+
+<hr>
+
+* [Name](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.name?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Name)
+
+```csharp{1,2}
+// MyClass → MyClass
+// MyGenericClass → MyGenericClass
+class MyClass{}
+class MyGenericClass<T>{}
+```
+
+<hr>
+
+* [OriginalDefinition](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.originaldefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_OriginalDefinition)
+
+```csharp{1,2}
+// MyClass → MyClass
+// MyGenericClass<int> → MyGenericClass<T>
+class MyClass{}
+class MyGenericClass<T>{
+	void MyMethod(MyGenericClass<int> p){}
+}
+```
+
+<hr>
