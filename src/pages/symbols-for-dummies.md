@@ -37,7 +37,7 @@ class MyClass{
 * [ContainingNamespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingnamespace?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingNamespace)
 
 ```csharp{1}
-// MyClass{} → MyNamespace
+// MyClass → MyNamespace
 namespace MyNamespace{
 	class MyClass{}
 }
@@ -48,7 +48,7 @@ namespace MyNamespace{
 * [ContainingSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingsymbol?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingSymbol)
 
 ```csharp{1}
-// MyClass{} → MyNamespace
+// MyClass → MyNamespace
 namespace MyNamespace{
 	class MyClass{}
 }
@@ -70,7 +70,7 @@ class MyClass{
 * [DeclaredAccessibility](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.declaredaccessibility?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_DeclaredAccessibility)
 
 ```csharp{1}
-// MyClass → Public
+// MyClass → Public
 public class MyClass{}
 ```
 
