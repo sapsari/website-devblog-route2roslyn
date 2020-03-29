@@ -11,6 +11,88 @@ Roslyn uses technical terms from programming language and compiler design. Somet
 
 <hr>
 
+* [CanBeReferencedByName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.canbereferencedbyname?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_CanBeReferencedByName)
+
+```csharp{1,2}
+// MyClass(){} → false
+// void MyMethod(){} → true
+
+class MyClass{
+	MyClass(){}
+	void MyMethod(){}
+}
+```
+
+<hr>
+
+* [ContainingAssembly](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingassembly?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingAssembly)
+* [ContainingModule](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingmodule?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingModule)
+
+```csharp{1}
+// returns assembly/module of the symbol
+```
+
+<hr>
+
+* [ContainingNamespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingnamespace?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingNamespace)
+
+```csharp{1}
+// MyClass{} → MyNamespace
+namespace MyNamespace{
+	class MyClass{}
+}
+```
+
+<hr>
+
+* [ContainingSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingsymbol?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingSymbol)
+
+```csharp{1}
+// MyClass{} → MyNamespace
+namespace MyNamespace{
+	class MyClass{}
+}
+```
+
+<hr>
+
+* [ContainingType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingType)
+
+```csharp{1}
+// MyInnerClass → MyClass
+class MyClass{
+	class MyInnerClass{}
+}
+```
+
+<hr>
+
+* [DeclaredAccessibility](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.declaredaccessibility?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_DeclaredAccessibility)
+
+```csharp{1}
+// MyClass → Public
+public class MyClass{}
+```
+
+<hr>
+
+* [DeclaringSyntaxReferences](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.declaringsyntaxreferences?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_DeclaringSyntaxReferences)
+
+```csharp{1}
+// class MyClass{} → Span [0..15)
+class MyClass{}
+```
+
+<hr>
+
+* [HasUnsupportedMetadata](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.hasunsupportedmetadata?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_HasUnsupportedMetadata)
+
+```csharp{1}
+ // false almost in all cases unless custom IL code or interop with another language is used
+```
+
+<hr>
+
 * [IsAbstract](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.isabstract?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_IsAbstract)
 
 ```csharp{1,4}
