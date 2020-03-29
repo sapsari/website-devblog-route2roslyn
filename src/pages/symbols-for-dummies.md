@@ -11,7 +11,7 @@ Roslyn uses technical terms from programming language and compiler design. Somet
 
 <hr>
 
-* [CanBeReferencedByName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.canbereferencedbyname?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_CanBeReferencedByName)
+* [CanBeReferencedByName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.canbereferencedbyname?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_CanBeReferencedByName)
 
 ```csharp{1,2}
 // MyClass(){} → false
@@ -21,42 +21,42 @@ class MyClass{
 	MyClass(){}
 	void MyMethod(){}
 }
-```
+```
 
 <hr>
 
-* [ContainingAssembly](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingassembly?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingAssembly)
-* [ContainingModule](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingmodule?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingModule)
+* [ContainingAssembly](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingassembly?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingAssembly)
+* [ContainingModule](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingmodule?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingModule)
 
 ```csharp{1}
 // returns assembly/module of the symbol
-```
+```
 
 <hr>
 
-* [ContainingNamespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingnamespace?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingNamespace)
+* [ContainingNamespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingnamespace?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingNamespace)
 
 ```csharp{1}
 // MyClass → MyNamespace
 namespace MyNamespace{
 	class MyClass{}
 }
-```
+```
 
 <hr>
 
-* [ContainingSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingsymbol?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingSymbol)
+* [ContainingSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingsymbol?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingSymbol)
 
 ```csharp{1}
 // MyClass → MyNamespace
 namespace MyNamespace{
 	class MyClass{}
 }
-```
+```
 
 <hr>
 
-* [ContainingType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingType)
+* [ContainingType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.containingtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_ContainingType)
 
 ```csharp{1}
 // MyInnerClass → MyClass
@@ -67,16 +67,16 @@ class MyClass{
 
 <hr>
 
-* [DeclaredAccessibility](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.declaredaccessibility?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_DeclaredAccessibility)
+* [DeclaredAccessibility](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.declaredaccessibility?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_DeclaredAccessibility)
 
 ```csharp{1}
-// MyClass → Public
+// MyClass → Public
 public class MyClass{}
 ```
 
 <hr>
 
-* [DeclaringSyntaxReferences](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.declaringsyntaxreferences?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_DeclaringSyntaxReferences)
+* [DeclaringSyntaxReferences](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.declaringsyntaxreferences?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_DeclaringSyntaxReferences)
 
 ```csharp{1}
 // class MyClass{} → Span [0..15)
@@ -85,7 +85,7 @@ class MyClass{}
 
 <hr>
 
-* [HasUnsupportedMetadata](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.hasunsupportedmetadata?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_HasUnsupportedMetadata)
+* [HasUnsupportedMetadata](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.hasunsupportedmetadata?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_HasUnsupportedMetadata)
 
 ```csharp{1}
  // false almost in all cases unless custom IL code or interop with another language is used
@@ -209,7 +209,6 @@ class MyClass{
 
 * [Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)
 
-
 ```csharp{1,4,7,10,16,19,22,25,30,35,40,45,48,51,54,57,60,63,68,72}
 // using MyString = System.String → Alias
 using MyString = System.String;
@@ -287,4 +286,3 @@ void MyMethod<T>(){}
 ```
 
 <hr>
-
