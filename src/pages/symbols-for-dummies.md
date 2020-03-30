@@ -527,5 +527,47 @@ class MyClass<T>{
 
 * TypeKind
 
+```csharp{1,4,7,10,13,17,20,23,26,29,32,35,38}
+// int[] → Array
+int[] myArray;
+
+// MyClass → Class
+class MyClass{}
+
+// MyDelegate → Delegate
+delegate void MyDelegate();
+
+// dynamic → Dynamic
+dynamic myDynamic;
+
+// MyEnum → Enum
+enum MyEnum {One, Two};
+MyEnum me;
+
+// Error
+// If type cannot be resolved due to ambiguity or accessibility etc.
+
+// MyInterface → Interface
+interface MyInterface{}
+
+// Module
+// Not available in C#, spesific to Visual Basic
+
+// int* → Pointer
+int* myPointer;
+
+// MyStruct → Struct
+struct MyStruct{}
+
+// Submission
+// Regular C# code cannot provide this. Indicates synthesized type by the compiler.
+
+// T → TypeParameter
+class MyClass<T>{}
+
+// Unknown
+// Regular C# code cannot provide this. Internal error in Roslyn may cause this.
+```
+
 <hr>
 <hr>
