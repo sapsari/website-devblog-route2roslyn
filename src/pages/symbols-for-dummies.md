@@ -525,7 +525,7 @@ class MyClass<T>{
 
 <hr>
 
-* TypeKind
+* [TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)
 
 ```csharp{1,4,7,10,13,17,20,23,26,29,32,35,38}
 // int[] → Array
