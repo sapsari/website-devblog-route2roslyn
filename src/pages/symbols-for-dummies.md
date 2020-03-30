@@ -287,8 +287,7 @@ void MyMethod<T>(){}
 
 <hr>
 
-* [Language
-  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.language?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Language)
+* [Language](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.language?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Language)
 
 ```csharp{1}
 // → C#
@@ -304,8 +303,7 @@ void MyMethod<T>(){}
 
 <hr>
 
-* [MetadataName
-  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.metadataname?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_MetadataName)
+* [MetadataName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.metadataname?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_MetadataName)
 
 ```csharp{1,2}
 // MyClass → MyClass
@@ -316,8 +314,7 @@ class MyGenericClass<T>{}
 
 <hr>
 
-* [Name
-  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.name?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Name)
+* [Name](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.name?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Name)
 
 ```csharp{1,2}
 // MyClass → MyClass
@@ -328,8 +325,7 @@ class MyGenericClass<T>{}
 
 <hr>
 
-* [OriginalDefinition
-  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.originaldefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_OriginalDefinition)
+* [OriginalDefinition](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.originaldefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_OriginalDefinition)
 
 ```csharp{1,2}
 // MyClass → MyClass
@@ -341,3 +337,33 @@ class MyGenericClass<T>{
 ```
 
 <hr>
+<hr>
+
+## [INamespaceOrTypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol?view=roslyn-dotnet)
+
+<hr>
+
+* [IsNamespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol.isnamespace?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamespaceOrTypeSymbol_IsNamespace)
+
+```csharp{1,4}
+// MyClass → false
+class MyClass{}
+
+// MyNamespace → true 
+namespace MyNamespace{}
+```
+
+* [IsType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol.istype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamespaceOrTypeSymbol_IsType)
+
+```csharp{1,4}
+// MyNamespace → false
+namespace MyNamespace{}
+
+// MyClass → true
+class MyClass{}
+```
+
+<hr>
+<hr>
+
+## [ITypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol?view=roslyn-dotnet)
