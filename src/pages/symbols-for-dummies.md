@@ -7,8 +7,12 @@ Roslyn uses technical terms from programming language and compiler design. Somet
 
 <!-- end -->
 
+<hr>
+<hr>
+
 ## [ISymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol?view=roslyn-dotnet)
 
+<hr>
 <hr>
 
 * [CanBeReferencedByName](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.canbereferencedbyname?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_CanBeReferencedByName)
@@ -342,6 +346,7 @@ class MyGenericClass<T>{
 ## [INamespaceOrTypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol?view=roslyn-dotnet)
 
 <hr>
+<hr>
 
 * [IsNamespace](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol.isnamespace?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamespaceOrTypeSymbol_IsNamespace)
 
@@ -352,6 +357,8 @@ class MyClass{}
 // MyNamespace → true 
 namespace MyNamespace{}
 ```
+
+<hr>
 
 * [IsType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol.istype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamespaceOrTypeSymbol_IsType)
 
@@ -369,8 +376,10 @@ class MyClass{}
 ## [ITypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol?view=roslyn-dotnet)
 
 <hr>
+<hr>
 
-* [AllInterfaces](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.allinterfaces?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_AllInterfaces)
+* [AllInterfaces
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.allinterfaces?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_AllInterfaces)
 
 ```csharp{1,2}
 // MyBaseClass → IMyBaseClassInterface
@@ -379,22 +388,24 @@ interface IMyBaseClassInterface{}
 interface IMyClassInterface{}
 class MyBaseClass : IMyBaseClassInterface{}
 class MyClass : MyBaseClass, IMyClassInterface{}
-```
+```
 
 <hr>
 
-* [BaseType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.basetype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_BaseType)
+* [BaseType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.basetype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_BaseType)
 
 ```csharp{1,2}
 // MyBaseClass → System.Object
 // MyClass → MyBaseClass
 class MyBaseClass{}
 class MyClass : MyBaseClass{}
-```
+```
 
 <hr>
 
-* [Interfaces](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.interfaces?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_Interfaces)
+* [Interfaces
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.interfaces?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_Interfaces)
 
 ```csharp{1,2}
 // MyBaseClass → IMyBaseClassInterface
@@ -403,11 +414,12 @@ interface IMyBaseClassInterface{}
 interface IMyClassInterface{}
 class MyBaseClass : IMyBaseClassInterface{}
 class MyClass : MyBaseClass, IMyClassInterface{}
-```
+```
 
 <hr>
 
-* [IsAnonymousType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isanonymoustype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsAnonymousType)
+* [IsAnonymousType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isanonymoustype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsAnonymousType)
 
 ```csharp{1,4}
 // var → false
@@ -415,11 +427,12 @@ var i = 0;
 
 // var → true
 var a = new {0};
-```
+```
 
 <hr>
 
-* [IsReadonly](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isreadonly?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsReadOnly)
+* [IsReadonly
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isreadonly?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsReadOnly)
 
 ```csharp{1,4}
 // MyStruct → false
@@ -427,11 +440,12 @@ struct MyStruct{}
 
 // MyStruct → true
 readonly struct MyStruct{}
-```
+```
 
 <hr>
 
-* [IsRefenceType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isreferencetype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsReferenceType)
+* [IsRefenceType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isreferencetype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsReferenceType)
 
 ```csharp{1,4}
 // MyStruct → false
@@ -439,11 +453,12 @@ struct MyStruct{}
 
 // MyClass → true
 class MyClass{}
-```
+```
 
 <hr>
 
-* [IsRefLikeType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isrefliketype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsRefLikeType)
+* [IsRefLikeType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isrefliketype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsRefLikeType)
 
 ```csharp{1,4}
 // MyStruct → false
@@ -451,11 +466,12 @@ struct MyStruct{}
 
 // MyStruct → false
 ref struct MyStruct{}
-```
+```
 
 <hr>
 
-* [IsTupleType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.istupletype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsTupleType)
+* [IsTupleType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.istupletype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsTupleType)
 
 ```csharp{1,4}
 // var → false
@@ -463,11 +479,12 @@ var myValue = 0;
 
 // var → true
 var myTuple = new (1,2);
-```
+```
 
 <hr>
 
-* [IsUnmanagedType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isunmanagedtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsUnmanagedType)
+* [IsUnmanagedType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isunmanagedtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsUnmanagedType)
 
 ```csharp{1,4}
 // string → false
@@ -475,11 +492,12 @@ string s = "";
 
 // int → true
 int i = 0;
-```
+```
 
 <hr>
 
-* [IsValueType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isvaluetype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsValueType)
+* [IsValueType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.isvaluetype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_IsValueType)
 
 ```csharp{1,4}
 // MyClass → false
@@ -487,11 +505,12 @@ class MyClass{}
 
 // MyStruct → true
 struct MyStruct{}
-```
+```
 
 <hr>
 
-* [OriginalDefinition](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.originaldefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_OriginalDefinition)
+* [OriginalDefinition
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.originaldefinition?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_OriginalDefinition)
 
 ```csharp{1}
 // MyClass<int> → MyClass<T>
