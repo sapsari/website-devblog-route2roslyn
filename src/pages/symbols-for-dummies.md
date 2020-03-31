@@ -525,7 +525,7 @@ class MyClass<T>{
 
 SpecialType enumuration documentation gives all the examples, so skipping this property.
 
-https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.specialtype?view=roslyn-dotnet
+<https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.specialtype?view=roslyn-dotnet>
 
 <hr>
 
