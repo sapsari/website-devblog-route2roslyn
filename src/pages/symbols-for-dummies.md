@@ -521,7 +521,11 @@ class MyClass<T>{
 
 <hr>
 
-* SpecialType
+* [SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)
+
+SpecialType enumuration documentation gives all the examples, so skipping this property.
+
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.specialtype?view=roslyn-dotnet
 
 <hr>
 
