@@ -555,7 +555,7 @@ MyEnum me;
 interface MyInterface{}
 
 // Module
-// Not available in C#, spesific to Visual Basic
+// Not available in C#, specific to Visual Basic
 
 // int* → Pointer
 int* myPointer;
