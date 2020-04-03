@@ -3,15 +3,19 @@ title: Symbols and types for dummies
 date: 2020-03-27T14:46:06.199Z
 description: Examples of roslyn symbol properties
 ---
-Roslyn uses technical terms from programming language and compiler design. Sometimes it can be hard to understand or guess what a property retrieves or a method executes. There is not enough samples in the documentation, not enough discussion in stackoverflow, or not a tool to debug or display semantic model and symbols; so I decided to write about symbols in the simplest form.
+Roslyn uses a lot of technical terms from programming language and compiler design. Sometimes it can be hard to understand or guess what a property retrieves or a method executes for regular coders. There is not enough samples in the documentation, not enough discussion in stackoverflow, or not a tool to debug or display semantic model and symbols; so I decided to write about symbols in the simplest form, as code snippets.
+
 <!-- end -->
 
-I recommend looking at <a href="#isymbol_kind">ISymbol.Kind</a>, <a href="#itypesymbol_specialtype">ITypeSymbol.SpecialType</a>, <a href="#itypesymbol_typekind">ITypeSymbol.Typekind</a>. They can be useful to considering all types when developing or testing with Roslyn. Here is a compilation of symbol properties and their representations in the language of C#.
+I especially recommend looking at <a href="#isymbol_kind">ISymbol.Kind</a>, <a href="#itypesymbol_specialtype">ITypeSymbol.SpecialType</a>, <a href="#itypesymbol_typekind">ITypeSymbol.Typekind</a>. They can be very useful for considering all cases/types when developing or testing with Roslyn. Here is a compilation of symbol properties and their representations in the language of C#.
 
 Shortcuts:
 <a href="#isymbol">ISymbol</a>
+
 <a href="#inamespaceortypesymbol">INamespaceOrTypeSymbol</a>
+
 <a href="#itypesymbol">ITypeSymbol</a>
+
 <a href="#inamedtypesymbol">INamedTypeSymbol</a>
 
 <hr>
@@ -218,7 +222,7 @@ class MyClass{
 
 <hr>
 
-* <p id="isymbol_kind">[Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)</p>
+* <p id="isymbol_kind">\[Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)</p>
 
 ```csharp{1,4,7,10,16,19,22,25,30,35,40,45,48,51,54,57,60,63,68,72}
 // using MyString = System.String → Alias
@@ -528,7 +532,7 @@ class MyClass<T>{
 
 <hr>
 
-* <p id="itypesymbol_specialtype">[SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)</p>
+* <p id="itypesymbol_specialtype">\[SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)</p>
 
 SpecialType enumuration documentation gives all the examples, so skipping this property.
 
@@ -536,7 +540,7 @@ SpecialType enumuration documentation gives all the examples, so skipping this p
 
 <hr>
 
-* <p id="itypesymbol_typekind">[TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)</p>
+* <p id="itypesymbol_typekind">\[TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)</p>
 
 ```csharp{1,4,7,10,13,17,20,23,26,29,32,35,38}
 // int[] → Array
@@ -588,7 +592,8 @@ class MyClass<T>{}
 <hr>
 <hr>
 
-* [Arity](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.arity?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_Arity)
+* [Arity
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.arity?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_Arity)
 
 ```csharp{1,4}
 // MyClass → 0
@@ -600,7 +605,8 @@ class MyGenericClass<T1,T2>{}
 
 <hr>
 
-* [AssociatedSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.associatedsymbol?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_AssociatedSymbol)
+* [AssociatedSymbol
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.associatedsymbol?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_AssociatedSymbol)
 
 ```csharp{1,2}
 // → null
@@ -609,7 +615,8 @@ class MyGenericClass<T1,T2>{}
 
 <hr>
 
-* [ConstructedFrom](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.constructedfrom?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_ConstructedFrom)
+* [ConstructedFrom
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.constructedfrom?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_ConstructedFrom)
 
 ```csharp{1,8}
 // MyClass → MyClass
@@ -626,9 +633,10 @@ class MyGenericClass<T>{
 }}
 ```
 
-<hr>
+<hr>
 
-* [Constructors](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.constructors?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_Constructors)
+* [Constructors
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.constructors?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_Constructors)
 
 ```csharp{1}
 // MyClass → MyClass(), MyClass(int i)
@@ -640,7 +648,8 @@ class MyClass{
 
 <hr>
 
-* [DelegateInvokeMethod](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.delegateinvokemethod?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_DelegateInvokeMethod)
+* [DelegateInvokeMethod
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.delegateinvokemethod?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_DelegateInvokeMethod)
 
 ```csharp{1,2}
 // MyClass → null
@@ -652,7 +661,8 @@ class MyClass{
 
 <hr>
 
-* [EnumUnderlyingType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.enumunderlyingtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_EnumUnderlyingType)
+* [EnumUnderlyingType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.enumunderlyingtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_EnumUnderlyingType)
 
 ```csharp{1,4,7}
 // MyClass → null
@@ -667,7 +677,8 @@ enum MyShortEnum : short {1,2,3}
 
 <hr>
 
-* [InstanceConstructors](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.instanceconstructors?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_InstanceConstructors)
+* [InstanceConstructors
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.instanceconstructors?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_InstanceConstructors)
 
 ```csharp{1}
 // MyClass → MyClass(int i)
@@ -679,7 +690,8 @@ class MyClass{
 
 <hr>
 
-* [IsComImport](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.iscomimport?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsComImport)
+* [IsComImport
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.iscomimport?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsComImport)
 
 ```csharp{1,4}
 // MyClass → false
@@ -693,7 +705,8 @@ class MyComClass{}
 
 <hr>
 
-* [IsGenericType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isgenerictype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsGenericType)
+* [IsGenericType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isgenerictype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsGenericType)
 
 ```csharp{1,4}
 // MyClass → false
@@ -705,7 +718,8 @@ class MyGenericClass<T1,T2>{}
 
 <hr>
 
-* [IsImplicitClass](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isimplicitclass?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsImplicitClass)
+* [IsImplicitClass
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isimplicitclass?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsImplicitClass)
 
 ```csharp{1,2}
 // → false
@@ -714,7 +728,8 @@ class MyGenericClass<T1,T2>{}
 
 <hr>
 
-* [IsScriptClass](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isscriptclass?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsScriptClass)
+* [IsScriptClass
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isscriptclass?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsScriptClass)
 
 ```csharp{1,2}
 // → false
@@ -723,7 +738,8 @@ class MyGenericClass<T1,T2>{}
 
 <hr>
 
-* [IsSerializable](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isserializable?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsSerializable)
+* [IsSerializable
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isserializable?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsSerializable)
 
 ```csharp{1,4}
 // MyClass → false
@@ -736,7 +752,8 @@ class MySerializableClass{}
 
 <hr>
 
-* [IsUnboundGenericType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isunboundgenerictype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsUnboundGenericType)
+* [IsUnboundGenericType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.isunboundgenerictype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_IsUnboundGenericType)
 
 ```csharp{1,2}
 // MyGenericClass<T1,T2> → false
@@ -750,7 +767,8 @@ class MyGenericClass<T1,T2>{
 
 <hr>
 
-* [MemberNames](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.membernames?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_MemberNames)
+* [MemberNames
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.membernames?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_MemberNames)
 
 ```csharp{1}
 // MyClass → myField, MyProperty, MyMethod
@@ -763,7 +781,8 @@ class MyClass{
 
 <hr>
 
-* [MightContainExtensionMethods](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.mightcontainextensionmethods?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_MightContainExtensionMethods)
+* [MightContainExtensionMethods
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.mightcontainextensionmethods?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_MightContainExtensionMethods)
 
 ```csharp{1,4}
 // MyClass → false
@@ -779,7 +798,8 @@ static class MyClass{
 
 <hr>
 
-* [StaticConstructors](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.staticconstructors?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_StaticConstructors)
+* [StaticConstructors
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.staticconstructors?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_StaticConstructors)
 
 ```csharp{1}
 // MyClass → MyClass()
@@ -789,9 +809,10 @@ class MyClass{
 }
 ```
 
-<hr>
+<hr>
 
-* [TupleElements](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.tupleelements?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TupleElements)
+* [TupleElements
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.tupleelements?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TupleElements)
 
 ```csharp{1,4}
 // int → Uninitialized
@@ -803,7 +824,8 @@ int i;
 
 <hr>
 
-* [TupleUnderlyingType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.tupleunderlyingtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TupleUnderlyingType)
+* [TupleUnderlyingType
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.tupleunderlyingtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TupleUnderlyingType)
 
 ```csharp{1,4,7}
 // int → null
@@ -818,7 +840,8 @@ ValueTuple<int, float> vt;
 
 <hr>
 
-* [TypeArgumentNullableAnnotations](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typeargumentnullableannotations?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeArgumentNullableAnnotations)
+* [TypeArgumentNullableAnnotations
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typeargumentnullableannotations?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeArgumentNullableAnnotations)
 
 ```csharp{1,2}
 // IMyInterface<T> → None
@@ -832,7 +855,8 @@ class MyGenericClass<T, U> where U : struct {
 
 <hr>
 
-* [TypeArguments](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typearguments?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeArguments)
+* [TypeArguments
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typearguments?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeArguments)
 
 ```csharp{1,2}
 // MyGenericClass<int, float> → int, float
@@ -847,7 +871,8 @@ class MyGenericClass<T, U>{
 
 <hr>
 
-* [TypeParameters](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typeparameters?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeParameters)
+* [TypeParameters
+  ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typeparameters?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeParameters)
 
 ```csharp{1,2}
 // MyGenericClass<int, float> → T, U
@@ -861,4 +886,3 @@ class MyGenericClass<T, U>{
 ```
 
 <hr>
-
