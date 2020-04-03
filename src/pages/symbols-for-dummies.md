@@ -5,7 +5,11 @@ description: Examples of roslyn symbol properties
 ---
 Roslyn uses technical terms from programming language and compiler design. Sometimes it can be hard to understand or guess what a property retrieves or a method executes. There is not enough samples in the documentation, not enough discussion in stackoverflow, or not a tool to debug or display semantic model and symbols; so I decided to write about symbols in the simplest form. Here is a compilation of symbol properties and their representations in the language of C#.
 
-<a href="#isymbol">Take me to the opening paragraph.</a>
+Shortcuts:
+<a href="#isymbol">ISymbol</a>
+<a href="#inamespaceortypesymbol">INamespaceOrTypeSymbol</a>
+<a href="#itypesymbol">ITypeSymbol</a>
+<a href="#inamedtypesymbol">INamedTypeSymbol</a>
 
 <!-- end -->
 
@@ -345,7 +349,7 @@ class MyGenericClass<T>{
 <hr>
 <hr>
 
-## [INamespaceOrTypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol?view=roslyn-dotnet)
+## <p id"inamespaceortypesymbol">[INamespaceOrTypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamespaceortypesymbol?view=roslyn-dotnet)</p>
 
 <hr>
 <hr>
@@ -375,7 +379,7 @@ class MyClass{}
 <hr>
 <hr>
 
-## [ITypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol?view=roslyn-dotnet)
+## <p id="itypesymbol">[ITypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol?view=roslyn-dotnet)</p>
 
 <hr>
 <hr>
@@ -578,7 +582,7 @@ class MyClass<T>{}
 <hr>
 <hr>
 
-## [INamedTypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol?view=roslyn-dotnet)
+## <p id="inamedtypesymbol">[INamedTypeSymbol](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol?view=roslyn-dotnet)</p>
 
 <hr>
 <hr>
