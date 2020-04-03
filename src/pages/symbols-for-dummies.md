@@ -478,7 +478,7 @@ class MyClass{}
 // MyStruct → false
 struct MyStruct{}
 
-// MyStruct → false
+// MyStruct → true
 ref struct MyStruct{}
 ```
 
@@ -847,12 +847,12 @@ ValueTuple<int, float> vt;
   ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typeargumentnullableannotations?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeArgumentNullableAnnotations)
 
 ```csharp{1,2}
-// IMyInterface<T> → None
-// IMyInterface<U?> → Annotated
-interface IMyInterface<K>{}
-class MyGenericClass<T, U> where U : struct {
-	IMyInterface<T> myField;
-	IMyInterface<U?> myFieldNullable;
+// IMyInterface<T1> → None
+// IMyInterface<T2?> → Annotated
+interface IMyInterface<T>{}
+class MyGenericClass<T1, T2> where T2 : struct {
+	IMyInterface<T1> myField;
+	IMyInterface<T2?> myFieldNullable;
 }
 ```
 
@@ -862,12 +862,12 @@ class MyGenericClass<T, U> where U : struct {
   ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typearguments?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeArguments)
 
 ```csharp{1,2}
-// MyGenericClass<int, float> → int, float
-// MyGenericClass<T, U> → T, U
+// MyGenericClass<int,float> → int,float
+// MyGenericClass<T1,T2> → T1,T2
 
-class MyGenericClass<T, U>{
+class MyGenericClass<T1,T2>{
 	void MyMethod(){
-		var mgc = new MyGenericClass<int, float>();
+		var mgc = new MyGenericClass<int,float>();
 	}
 }
 ```
@@ -878,12 +878,12 @@ class MyGenericClass<T, U>{
   ](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typeparameters?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeParameters)
 
 ```csharp{1,2}
-// MyGenericClass<int, float> → T, U
-// MyGenericClass<T, U> → T, U
+// MyGenericClass<int,float> → T1,T2
+// MyGenericClass<T1,T2> → T1,T2
 
-class MyGenericClass<T, U>{
+class MyGenericClass<T1,T2>{
 	void MyMethod(){
-		var mgc = new MyGenericClass<int, float>();
+		var mgc = new MyGenericClass<int,float>();
 	}
 }
 ```
