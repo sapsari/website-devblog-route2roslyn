@@ -533,7 +533,7 @@ class MyClass<T>{
 
 <hr>
 
-* <p id="itypesymbol_specialtype">\\[SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)</p>
+* [<p id="itypesymbol_specialtype">SpecialType</p>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)
 
 SpecialType enumuration documentation gives all the examples, so skipping this property.
 
@@ -541,7 +541,7 @@ SpecialType enumuration documentation gives all the examples, so skipping this p
 
 <hr>
 
-* <p id="itypesymbol_typekind">\\[TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)</p>
+* [<p id="itypesymbol_typekind">TypeKind</p>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)
 
 ```csharp{1,4,7,10,13,17,20,23,26,29,32,35,38}
 // int[] → Array
