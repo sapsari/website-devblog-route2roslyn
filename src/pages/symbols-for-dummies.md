@@ -4,18 +4,15 @@ date: 2020-03-27T14:46:06.199Z
 description: Examples of roslyn symbol properties
 ---
 Roslyn uses technical terms from programming language and compiler design. Sometimes it can be hard to understand or guess what a property retrieves or a method executes. There is not enough samples in the documentation, not enough discussion in stackoverflow, or not a tool to debug or display semantic model and symbols; so I decided to write about symbols in the simplest form.
+<!-- end -->
 
-
-
-Here is a compilation of symbol properties and their representations in the language of C#.
+I recommend looking at <a href="#isymbol_kind">ISymbol.Kind</a>, <a href="#itypesymbol_specialtype">ITypeSymbol.SpecialType</a>, <a href="#itypesymbol_typekind">ITypeSymbol.Typekind</a>. They can be useful to considering all types when developing or testing with Roslyn. Here is a compilation of symbol properties and their representations in the language of C#.
 
 Shortcuts:
 <a href="#isymbol">ISymbol</a>
 <a href="#inamespaceortypesymbol">INamespaceOrTypeSymbol</a>
 <a href="#itypesymbol">ITypeSymbol</a>
 <a href="#inamedtypesymbol">INamedTypeSymbol</a>
-
-<!-- end -->
 
 <hr>
 <hr>
@@ -221,7 +218,7 @@ class MyClass{
 
 <hr>
 
-* [Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)
+* <p id="isymbol_kind">[Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)</p>
 
 ```csharp{1,4,7,10,16,19,22,25,30,35,40,45,48,51,54,57,60,63,68,72}
 // using MyString = System.String → Alias
@@ -531,7 +528,7 @@ class MyClass<T>{
 
 <hr>
 
-* [SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)
+* <p id="itypesymbol_specialtype">[SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)</p>
 
 SpecialType enumuration documentation gives all the examples, so skipping this property.
 
@@ -539,7 +536,7 @@ SpecialType enumuration documentation gives all the examples, so skipping this p
 
 <hr>
 
-* [TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)
+* <p id="itypesymbol_typekind">[TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)</p>
 
 ```csharp{1,4,7,10,13,17,20,23,26,29,32,35,38}
 // int[] → Array
@@ -782,7 +779,7 @@ static class MyClass{
 
 <hr>
 
-StaticConstructors
+* [StaticConstructors](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.staticconstructors?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_StaticConstructors)
 
 ```csharp{1}
 // MyClass → MyClass()
