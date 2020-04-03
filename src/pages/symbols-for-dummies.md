@@ -10,6 +10,7 @@ Roslyn uses a lot of technical terms from programming language and compiler desi
 I especially recommend looking at <a href="#isymbol_kind">ISymbol.Kind</a>, <a href="#itypesymbol_specialtype">ITypeSymbol.SpecialType</a>, <a href="#itypesymbol_typekind">ITypeSymbol.Typekind</a>. They can be very useful for considering all cases/types when developing or testing with Roslyn. Here is a compilation of symbol properties and their representations in the language of C#.
 
 Shortcuts:
+
 <a href="#isymbol">ISymbol</a>
 
 <a href="#inamespaceortypesymbol">INamespaceOrTypeSymbol</a>
@@ -222,7 +223,7 @@ class MyClass{
 
 <hr>
 
-* <p id="isymbol_kind">\[Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)</p>
+* <p id="isymbol_kind">\\[Kind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.kind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_Kind)</p>
 
 ```csharp{1,4,7,10,16,19,22,25,30,35,40,45,48,51,54,57,60,63,68,72}
 // using MyString = System.String → Alias
@@ -532,7 +533,7 @@ class MyClass<T>{
 
 <hr>
 
-* <p id="itypesymbol_specialtype">\[SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)</p>
+* <p id="itypesymbol_specialtype">\\[SpecialType](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.specialtype?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_SpecialType)</p>
 
 SpecialType enumuration documentation gives all the examples, so skipping this property.
 
@@ -540,7 +541,7 @@ SpecialType enumuration documentation gives all the examples, so skipping this p
 
 <hr>
 
-* <p id="itypesymbol_typekind">\[TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)</p>
+* <p id="itypesymbol_typekind">\\[TypeKind](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.itypesymbol.typekind?view=roslyn-dotnet#Microsoft_CodeAnalysis_ITypeSymbol_TypeKind)</p>
 
 ```csharp{1,4,7,10,13,17,20,23,26,29,32,35,38}
 // int[] → Array
