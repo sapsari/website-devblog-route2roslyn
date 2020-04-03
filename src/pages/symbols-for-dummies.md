@@ -104,7 +104,8 @@ class MyClass{}
 * [HasUnsupportedMetadata](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isymbol.hasunsupportedmetadata?view=roslyn-dotnet#Microsoft_CodeAnalysis_ISymbol_HasUnsupportedMetadata)
 
 ```csharp{1}
-// → false// almost in all cases unless custom IL code or interop with another language is used
+// → false
+// almost in all cases unless custom IL code or interop with another language is used
 ```
 
 <hr>
