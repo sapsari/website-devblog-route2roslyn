@@ -764,7 +764,7 @@ static class MyClass{}
 
 // MyClass → true
 static class MyClass{
-	public static int MyExtenstionMethod(this String str){
+	public static int MyExtensionMethod(this String str){
         return 0;
     }
 }
@@ -814,8 +814,8 @@ ValueTuple<int, float> vt;
 * [TypeArgumentNullableAnnotations](https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.inamedtypesymbol.typeargumentnullableannotations?view=roslyn-dotnet#Microsoft_CodeAnalysis_INamedTypeSymbol_TypeArgumentNullableAnnotations)
 
 ```csharp{1,2}
-// myField → None
-// myFieldNullable → Annotated
+// IMyInterface<T> → None
+// IMyInterface<U?> → Annotated
 interface IMyInterface<K>{}
 class MyGenericClass<T, U> where U : struct {
 	IMyInterface<T> myField;
