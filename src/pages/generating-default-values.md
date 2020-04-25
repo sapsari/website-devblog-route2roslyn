@@ -1,13 +1,16 @@
 ---
 title: Generating default values
 date: 2020-04-25T12:13:39.668Z
+featuredImage: './generating-default-values.jpg'
 description: Generating default values for variables and parameters as placeholder values
 ---
 When generating code, you may need to instantiate a variable or a parameter with some placeholder value (On my end, I needed to assign values of base class's constructor parameters). The easiest solution will be using the default literal. Or if you want to be more traditional and support older C# versions, using 0 for value types (except structs) and null for reference types will give the same result. But these approaches have some issues with method overloading.
 
+<!-- end -->
+
 Let's say there are multiple Foo methods, and our intention is calling method Foo(float f). Calling Foo(0) or Foo(default) will both fail. Even worse, Foo(default) might cause an ambiguity error.
 
-```
+```csharp
 void FooTest(){
     Foo(default); // will give ambiguity error
     Foo(0); // returns "int"
@@ -19,7 +22,7 @@ string Foo(float f) => "float";
 string Foo(string s) => "string";
 ```
 
-```
+```csharp
 void FooTest(){
     Foo(default); // returns "byte"
     Foo(0); // returns "int"
@@ -33,7 +36,7 @@ string Foo(float f) => "float";
 
 To overcome overloading ambiguity, we need to explicitly specify type of the value. Calling Foo((float)0) or Foo(default(float)) will work. (Also another way of calling is with the constructor, Foo(new float()) )
 
-```
+```csharp
 void FooTest(){
     Foo(default(float)); // returns "float"
     Foo((float)0); // returns "float"
@@ -47,7 +50,7 @@ string Foo(string s) => "string";
 
 Explicitly specifying types is totally fine, except it is not easy to read for the human eye. No one would prefer to see (float)0 or default(float) over 0f.
 
-```
+```csharp
 void FooTest(){
     Foo(0f); // returns "float"
 }
@@ -62,7 +65,7 @@ Float is an exception, along with some other types. Not all types have a unique 
 
 I preferred to use "" over null and string.empty for strings, Datetime.Now over new DateTime(), IntPtr.Zero over new IntPtr().
 
-```
+```csharp
 public static ExpressionSyntax TypeToDefaultValue(ITypeSymbol typeSymbol, bool isExplicit = false)
 {
     var syntax = TypeToDefaultValueAux(typeSymbol, isExplicit, out bool cannotBeExplicit);
