@@ -295,7 +295,7 @@ class MyClass{
 	int MyProperty => 3;
 }
 
-// from x in list → RangeVariable
+// x → RangeVariable
 var list = new List<int>();
 var item = from x in list select x;
 
