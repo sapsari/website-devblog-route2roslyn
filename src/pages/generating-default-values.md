@@ -63,7 +63,7 @@ string Foo(string s) => "string";
 
 Float is an exception, along with some other types. Not all types have a unique identifier suffix like **f**. But since there are some, and these are among the most used types; I decided to write a helper method for generating default value in the user-friendly way. Searching Roslyn methods and digging Roslyn source code didn't help much, so I had to write it myself.
 
-I preferred to use **""** over **null** and **string.empty** for strings, **Datetime.Now** over **new DateTime()**, **IntPtr.Zero** over **new IntPtr()**.
+Here is the code. I preferred to use **""** over **null** and **string.empty** for strings, **Datetime.Now** over **new DateTime()**, **IntPtr.Zero** over **new IntPtr()**.
 
 ```csharp
 public static ExpressionSyntax TypeToDefaultValue(ITypeSymbol typeSymbol, bool isExplicit = false)
@@ -238,5 +238,7 @@ static ExpressionSyntax TypeToDefaultValueAux(ITypeSymbol typeSymbol, bool isExp
 Related useful links:
 
 <https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/default-values>
+
 <https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#integer-literals>
+
 <https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/expressions#compile-time-checking-of-dynamic-overload-resolution>
